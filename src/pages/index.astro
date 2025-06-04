@@ -47,6 +47,28 @@ import SplashCursor from "@/components/SplashCursor.jsx";
       max-width: 50%; /* Pe ecrane mari, limitează imaginea la 50% din lățime */
     }
   }
+  .splash {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: rgba(0, 153, 255, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: splash-fade 0.5s ease-out;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
+
+  @keyframes splash-fade {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(2);
+    }
+  }
 </style>
 
 ---
