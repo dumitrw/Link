@@ -23,6 +23,9 @@ importers:
       astro:
         specifier: ^5.8.2
         version: 5.8.2(@types/node@22.15.29)(rollup@4.41.1)(typescript@5.8.3)(yaml@2.8.0)
+      gsap:
+        specifier: ^3.13.0
+        version: 3.13.0
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -1027,6 +1030,9 @@ packages:
   globals@11.12.0:
     resolution: {integrity: sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==}
     engines: {node: '>=4'}
+
+  gsap@3.13.0:
+    resolution: {integrity: sha512-QL7MJ2WMjm1PHWsoFrAQH/J8wUeqZvMtHO58qdekHpCfhvhSL4gSiz6vJf5EeMP0LOn3ZCprL2ki/gjED8ghVw==}
 
   h3@1.15.3:
     resolution: {integrity: sha512-z6GknHqyX0h9aQaTx22VZDf6QyZn+0Nh+Ym8O/u0SGSkyF5cuTJYKlc8MkzW3Nzf9LE1ivcpmYC3FUGpywhuUQ==}
@@ -3061,6 +3067,8 @@ snapshots:
       is-glob: 4.0.3
 
   globals@11.12.0: {}
+
+  gsap@3.13.0: {}
 
   h3@1.15.3:
     dependencies:
