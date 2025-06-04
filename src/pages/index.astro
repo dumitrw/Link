@@ -9,44 +9,39 @@ import Steam from "@/icons/Steam.astro";
 import SplashCursor from "@/components/SplashCursor.jsx";
 ---
 
-<!-- -->
 <Layout title="link-uri">
-<SplashCursor client:load />
+  <SplashCursor client:load />
+
   <main>
-  
     <Header />
-  
-
     <Socials />
-
     <!-- Poza <Featured /> -->
     <Buttons />
-  
   </main>
-</Layout>
-<!-- <img src="https://lanyard.cnrad.dev/api/268156620050006017" 
-     alt="status" 
-     style="display: block; margin: auto; max-width: 50%; height: auto; opacity: 1;">
--->
-  
 
-     <img src="https://lanyard.cnrad.dev/api/268156620050006017" 
-     alt="status" 
-     class="responsive-image">
+  <Footer />
+
+  <img
+    src="https://lanyard.cnrad.dev/api/268156620050006017"
+    alt="status"
+    class="responsive-image"
+  />
+</Layout>
 
 <style>
   .responsive-image {
     display: block;
     margin: auto;
-    max-width: 100%; /* Ocupă întreaga lățime a containerului */
+    max-width: 100%;
     height: auto;
   }
 
   @media (min-width: 768px) {
     .responsive-image {
-      max-width: 50%; /* Pe ecrane mari, limitează imaginea la 50% din lățime */
+      max-width: 50%;
     }
   }
+
   .splash {
     position: absolute;
     width: 30px;
@@ -69,16 +64,7 @@ import SplashCursor from "@/components/SplashCursor.jsx";
       transform: scale(2);
     }
   }
-</style>
 
----
-
-
-
-<Layout title="link-uri">
-    <Footer />
-</Layout>
-<style>
   main {
     width: 100%;
   }
