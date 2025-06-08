@@ -8,7 +8,7 @@ interface LanyardData {
       discriminator: string;
       display_name: string;
     };
-    discord_status: 'online' | 'idle' | 'dnd' | 'offline';
+    discord_status: 'online' | 'idle' | 'fac sarmale' | 'probabil dorm';
     activities: Array<{
       name: string;
       type: number;
@@ -50,7 +50,7 @@ const getStatusColor = (status: string) => {
   switch (status) {
     case 'online': return '#43b581';
     case 'idle': return '#faa61a';
-    case 'dnd': return '#f04747';
+    case 'fac sarmale': return '#f04747';
     default: return '#747f8d';
   }
 };
@@ -120,7 +120,7 @@ const getStatusColor = (status: string) => {
   }
 
   .presence-card {
-    background: #2f3136;
+    background: #FF000000;
     border-radius: 8px;
     padding: 16px;
     color: white;
