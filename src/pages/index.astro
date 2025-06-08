@@ -5,16 +5,14 @@ import Socials from "@/components/sections/Socials.astro";
 import Featured from "@/components/sections/Featured.astro";
 import Buttons from "@/components/sections/Buttons.astro";
 import Footer from "@/components/sections/Footer.astro";
-import Steam from "@/icons/Steam.astro";
 import SplashCursor from "@/components/SplashCursor.jsx";
 import DiscordPresence from "@/components/DiscordPresence.jsx";
 import LetterGlitch from "@/components/LetterGlitch.jsx";
 ---
 
-<Layout title="link-uri">
-  <div class="glitch-container">    <LetterGlitch
+<Layout title="link-uri">  <div class="glitch-container">    <LetterGlitch
       client:only="react"
-    
+      glitchColors={["#43B54C", "#2b4539", "#61dca3"]}
       glitchSpeed={100}
       centerVignette={false}
       outerVignette={true}
