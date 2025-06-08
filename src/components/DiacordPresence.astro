@@ -1,0 +1,219 @@
+astro---
+interface LanyardData {
+  success: boolean;
+  data: {
+    discord_user: {
+      username: string;
+      avatar: string;
+      discriminator: string;
+      display_name: string;
+    };
+    discord_status: 'online' | 'idle' | 'dnd' | 'offline';
+    activities: Array<{
+      name: string;
+      type: number;
+      state?: string;
+      details?: string;
+      timestamps?: {
+        start?: number;
+        end?: number;
+      };
+    }>;
+    listening_to_spotify: boolean;
+    spotify?: {
+      track_id: string;
+      song: string;
+      artist: string;
+      album: string;
+      album_art_url: string;
+    };
+  };
+}
+
+const DISCORD_ID = '268156620050006017'; // Replace with your Discord ID
+
+let lanyardData: LanyardData | null = null;
+let error: string | null = null;
+
+try {
+  const response = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`);
+  if (response.ok) {
+    lanyardData = await response.json();
+  } else {
+    error = `Failed to fetch presence data: ${response.status}`;
+  }
+} catch (e) {
+  error = `Network error: ${e instanceof Error ? e.message : 'Unknown error'}`;
+}
+
+const getStatusColor = (status: string) => {
+  switch (status) {
+    case 'online': return '#43b581';
+    case 'idle': return '#faa61a';
+    case 'dnd': return '#f04747';
+    default: return '#747f8d';
+  }
+};
+---
+
+<div class="discord-presence">
+  {error ? (
+    <div class="error">
+      <p>Could not load Discord presence: {error}</p>
+    </div>
+  ) : lanyardData?.success ? (
+    <div class="presence-card">
+      <div class="user-info">
+        <div class="avatar-container">
+          <img 
+            src={`https://cdn.discordapp.com/avatars/${DISCORD_ID}/${lanyardData.data.discord_user.avatar}.png?size=128`}
+            alt={`${lanyardData.data.discord_user.display_name}'s avatar`}
+            class="avatar"
+          />
+          <div 
+            class="status-indicator"
+            style={`background-color: ${getStatusColor(lanyardData.data.discord_status)}`}
+          ></div>
+        </div>
+        <div class="user-details">
+          <h3>{lanyardData.data.discord_user.display_name || lanyardData.data.discord_user.username}</h3>
+          <p class="status">{lanyardData.data.discord_status}</p>
+        </div>
+      </div>
+
+      {lanyardData.data.listening_to_spotify && lanyardData.data.spotify && (
+        <div class="spotify-activity">
+          <div class="spotify-info">
+            <img 
+              src={lanyardData.data.spotify.album_art_url} 
+              alt={`${lanyardData.data.spotify.album} cover`}
+              class="album-art"
+            />
+            <div class="track-info">
+              <p class="song-title">{lanyardData.data.spotify.song}</p>
+              <p class="artist">by {lanyardData.data.spotify.artist}</p>
+              <p class="album">on {lanyardData.data.spotify.album}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {lanyardData.data.activities.filter(activity => activity.type === 0).map(activity => (
+        <div class="game-activity">
+          <p><strong>Playing:</strong> {activity.name}</p>
+          {activity.details && <p class="activity-details">{activity.details}</p>}
+          {activity.state && <p class="activity-state">{activity.state}</p>}
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div class="loading">
+      <p>Loading Discord presence...</p>
+    </div>
+  )}
+</div>
+
+<style>
+  .discord-presence {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .presence-card {
+    background: #2f3136;
+    border-radius: 8px;
+    padding: 16px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .avatar-container {
+    position: relative;
+  }
+
+  .avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+  }
+
+  .status-indicator {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 3px solid #2f3136;
+  }
+
+  .user-details h3 {
+    margin: 0 0 4px 0;
+    font-size: 18px;
+  }
+
+  .status {
+    margin: 0;
+    color: #b9bbbe;
+    text-transform: capitalize;
+  }
+
+  .spotify-activity {
+    background: #1db954;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .spotify-info {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .album-art {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+  }
+
+  .track-info p {
+    margin: 2px 0;
+  }
+
+  .song-title {
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .artist, .album {
+    font-size: 12px;
+    opacity: 0.9;
+  }
+
+  .game-activity {
+    background: #5865f2;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 8px;
+  }
+
+  .activity-details, .activity-state {
+    font-size: 14px;
+    margin: 4px 0;
+    opacity: 0.8;
+  }
+
+  .error, .loading {
+    text-align: center;
+    padding: 20px;
+    color: #747f8d;
+  }
+</style>
