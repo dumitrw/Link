@@ -44,25 +44,24 @@ export default function DiscordPresence() {
           const lanyardData = await response.json();
           setData(lanyardData);
           
-          // Actualizează culoarea în funcție de status
-          const statusColors = {
-            online: ['#43B54C', '#2b4539', '#61dca3'],
-            idle: ['#FAA61A', '#8B6914', '#FFD700'],
-            dnd: ['#E02C2C', '#8B0000', '#FF4500'],
-            offline: ['#747F8D', '#36393F', '#4F545C']
-          };
-          
-          const card = document.querySelector('.discord-card');
-          if (card && lanyardData.data.discord_status) {
-            card.style.setProperty('--status-color', `rgba(${hexToRgb(statusColors[lanyardData.data.discord_status][0])}, 0.37)`);
+          if (lanyardData.data.discord_status) {
+            const status = lanyardData.data.discord_status;
+            const statusConfig = statusColors[status];
+            const card = document.querySelector('.discord-card');
             
-            // Emit status color change event
-            const event = new CustomEvent('discord-status-change', {
-              detail: {
-                colors: statusColors[lanyardData.data.discord_status]
-              }
-            });
-            window.dispatchEvent(event);
+            if (card && statusConfig) {
+              card.style.setProperty('--status-color', statusConfig.shadow);
+              
+              // Emit status color change event immediately
+              console.log('Emitting new colors:', statusConfig.glitchColors);
+              const event = new CustomEvent('discord-status-change', {
+                detail: {
+                  colors: statusConfig.glitchColors
+                }
+              });
+              window.dispatchEvent(event);
+              console.log('Event emitted with colors:', statusConfig.glitchColors);
+            }
           }
         } else {
           setError(`Failed to fetch: ${response.status}`);
@@ -76,8 +75,8 @@ export default function DiscordPresence() {
 
     fetchPresence();
     
-    // Optional: Set up polling for real-time updates
-    const interval = setInterval(fetchPresence, 10000); // Update every 10 seconds
+    // Update every 5 seconds to match Discord more closely
+    const interval = setInterval(fetchPresence, 5000);
     
     return () => clearInterval(interval);
   }, []);
