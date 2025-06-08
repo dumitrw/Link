@@ -11,14 +11,18 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/preact": "^4.1.0",
     "@astrojs/react": "^4.3.0",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.6",
+    "@types/ws": "^8.18.1",
     "astro": "^5.8.2",
     "gsap": "^3.13.0",
+    "preact": "^10.26.8",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.3",
+    "ws": "^8.18.2"
   },
   "packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a"
 }

@@ -1,0 +1,95 @@
+.discord-card {
+  --status-color: rgba(31, 135, 40, 0.37); /* default color */
+  background: rgba(0, 0, 0, 0.11);
+  border-radius: 15px;
+  padding: 1.5rem;
+  max-width: 400px;
+  margin: 2rem auto;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 var(--status-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.discord-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px 0 var(--status-color);
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.589); /* Changed to a neutral semi-transparent white */
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 12px var(--status-color); /* Keeping status color for shadow */
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.4); /* Lighter border on hover */
+}
+
+.user-section h3 {
+  font-size: 1.25rem;
+  margin: 0;
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.status {
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.status.online { color: #43b54c; }
+.status.idle { color: #FAA61A; }
+.status.dnd { color: #e02c2c; }
+.status.offline { color: #747F8D; }
+
+.spotify-section {
+  background: rgba(29, 29, 29, 0.1);
+  padding: 1rem;
+  border-radius: 12px;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(29, 185, 84, 0.2);
+}
+
+.spotify-section:hover {
+  background: rgba(29, 185, 84, 0.15);
+  transform: translateX(5px);
+}
+
+.spotify-section strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #1DB954;
+  font-size: 1.1rem;
+}
+
+.spotify-section p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.spotify-link {
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+.spotify-link:hover .spotify-section {
+  background: rgba(29, 185, 84, 0.2);
+  transform: translateX(5px);
+}

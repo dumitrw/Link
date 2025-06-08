@@ -7,7 +7,7 @@ import Buttons from "@/components/sections/Buttons.astro";
 import Footer from "@/components/sections/Footer.astro";
 import Steam from "@/icons/Steam.astro";
 import SplashCursor from "@/components/SplashCursor.jsx";
-import DiscordPresence from "@/components/DiscordPresence.astro";
+import DiscordPresence from "@/components/DiscordPresence.jsx";
 ---
 
 <Layout title="link-uri">
@@ -20,10 +20,9 @@ import DiscordPresence from "@/components/DiscordPresence.astro";
     <!-- Poza <Featured /> -->
     <Buttons />
   </main>
-
   <Footer />
 
-<DiscordPresence />
+<DiscordPresence client:only="react" />
 
 <!--  <img
     src="https://lanyard.cnrad.dev/api/268156620050006017"
