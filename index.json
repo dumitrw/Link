@@ -53,7 +53,7 @@
       "url": "https://discord.com/invite/JXTxD3gy9r",
       "title": "Server Discord",
       "textColor": "#FFF",
-      "backgroundColor": "#000",
+      "backgroundColor": "#ff000000",
       "borderRadius": ".75rem"
     },
     {
@@ -62,7 +62,7 @@
       "url": "https://steamcommunity.com/id/fvckyxu",
       "title": "Profil Steam",
       "textColor": "#FFF",
-      "backgroundColor": "#000",
+      "backgroundColor": "#ff000000",
       "borderRadius": ".75rem"
     },
     {
@@ -70,7 +70,7 @@
       "url": "https://www.tipeeestream.com/dumitrw/donation",
       "title": "Donatie TipeeeStream",
       "textColor": "#FFF",
-      "backgroundColor": "#000",
+      "backgroundColor": "#ff000000",
       "borderRadius": ".75rem"
     }
   ],

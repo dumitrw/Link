@@ -8,12 +8,20 @@ import Footer from "@/components/sections/Footer.astro";
 import Steam from "@/icons/Steam.astro";
 import SplashCursor from "@/components/SplashCursor.jsx";
 import DiscordPresence from "@/components/DiscordPresence.jsx";
+import LetterGlitch from "@/components/LetterGlitch.jsx";
 ---
 
 <Layout title="link-uri">
-
+  <div class="glitch-container">    <LetterGlitch
+      client:only="react"
+      glitchSpeed={50}
+      centerVignette={true}
+      outerVignette={false}
+      smooth={true}
+      opacity={0.15}
+    />
+  </div>
   <SplashCursor client:only="react" />
-
   <main>
     <Header />
     <Socials />
@@ -67,8 +75,25 @@ import DiscordPresence from "@/components/DiscordPresence.jsx";
       transform: scale(2);
     }
   }
+  .glitch-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .glitch-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+  }
 
   main {
     width: 100%;
+    position: relative;
+    z-index: 1;
   }
 </style>
