@@ -60,7 +60,10 @@ export default function DiscordPresence() {
           />
         </a>
         <div>
-          <h3>{data.data.discord_user.username || data.data.discord_user.global_name}</h3>
+          <h3>
+            {data.data.discord_user.username || data.data.discord_user.global_name}
+            <span className="guild-tag">&#60;3</span>
+          </h3>
           <p className={`status ${data.data.discord_status}`}>
             {data.data.discord_status}
           </p>
@@ -74,7 +77,8 @@ export default function DiscordPresence() {
         >
           <div className="spotify-section">
             <strong>🎵 Ascult muzica pe Spotify</strong>
-            <p>{data.data.spotify.song} by {data.data.spotify.artist}</p>
+            <p className="song-title">{data.data.spotify.song}</p>
+            <p><span className="by-text">by</span> {data.data.spotify.artist}</p>
           </div>
         </a>
       )}

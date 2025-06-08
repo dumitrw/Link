@@ -2,13 +2,19 @@
   --status-color: rgba(31, 135, 40, 0.37); /* default color */
   background: rgba(0, 0, 0, 0.11);
   border-radius: 15px;
-  padding: 1.5rem;
+  padding: 1.5rem; /* Reduced padding */
   max-width: 400px;
   margin: 2rem auto;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px 0 var(--status-color);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 120px; /* Reduced minimum height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem; /* Add consistent spacing between elements */
 }
 
 .discord-card:hover {
@@ -20,8 +26,9 @@
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  margin-bottom: 0.5rem;
+  margin: 0; /* Remove auto margins */
   position: relative;
+  width: 100%;
 }
 
 .avatar {
@@ -31,6 +38,7 @@
   border: 3px solid rgba(255, 255, 255, 0.589); /* Changed to a neutral semi-transparent white */
   transition: transform 0.3s ease;
   box-shadow: 0 4px 12px var(--status-color); /* Keeping status color for shadow */
+  margin-bottom: 0; /* Remove bottom margin */
 }
 
 .avatar:hover {
@@ -60,9 +68,11 @@
   background: rgba(29, 29, 29, 0.1);
   padding: 1rem;
   border-radius: 12px;
-  margin-top: 1rem;
+  margin-top: 0; /* Remove top margin since we're using gap */
   transition: all 0.3s ease;
   border: 1px solid rgba(29, 185, 84, 0.2);
+  width: 100%; /* Ensure full width */
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .spotify-section:hover {
@@ -74,17 +84,18 @@
   display: block;
   margin-bottom: 0.5rem;
   color: #1DB954;
-  font-size: 1.1rem;
+  font-size: 0.8rem;
 }
 
 .spotify-section p {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #fff;
 }
 
 .spotify-link {
   text-decoration: none;
+  width: 100%; /* Ensure full width for the link */
   display: block;
   cursor: pointer;
 }
@@ -92,4 +103,34 @@
 .spotify-link:hover .spotify-section {
   background: rgba(29, 185, 84, 0.2);
   transform: translateX(5px);
+}
+
+.song-title {
+  font-weight: 600;
+  margin: 0;
+ 
+  color: #fff;
+}
+
+.by-text {
+  font-weight: 300;
+  opacity: 0.8;
+   font-size: 0.9rem;
+}
+
+.guild-tag {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-left: 0.5rem;
+  font-weight: 400;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.guild-tag:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.8);
 }
