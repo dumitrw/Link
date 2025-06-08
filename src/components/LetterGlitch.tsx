@@ -248,15 +248,23 @@ const LetterGlitch = ({
     }
 
     animationRef.current = requestAnimationFrame(animate);
-  };
-
-  useEffect(() => {
+  };  useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    const handleStatusChange = (event: CustomEvent) => {
+      const newColors = event.detail.colors;
+      if (Array.isArray(newColors) && newColors.length > 0) {
+        glitchColors.length = 0;
+        glitchColors.push(...newColors);
+      }
+    };
 
     context.current = canvas.getContext("2d");
     resizeCanvas();
     animate();
+
+    window.addEventListener('discord-status-change', handleStatusChange as EventListener);
 
     let resizeTimeout: NodeJS.Timeout;
 
@@ -269,11 +277,10 @@ const LetterGlitch = ({
       }, 100);
     };
 
-    window.addEventListener("resize", handleResize);
-
-    return () => {
+    window.addEventListener("resize", handleResize);    return () => {
       cancelAnimationFrame(animationRef.current!);
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener('discord-status-change', handleStatusChange as EventListener);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [glitchSpeed, smooth]);
