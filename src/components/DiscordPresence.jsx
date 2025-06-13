@@ -111,9 +111,18 @@ export default function DiscordPresence() {
           className="spotify-link"
         >
           <div className="spotify-section">
-            <strong>🎵 Ascult muzica pe Spotify</strong>
-            <p className="song-title">{data.data.spotify.song}</p>
-            <p><span className="by-text">by</span> {data.data.spotify.artist}</p>
+            <div className="spotify-album">
+              <img 
+                src={data.data.spotify.album_art_url} 
+                alt={`${data.data.spotify.song} album art`}
+                className="album-art"
+              />
+              <div className="spotify-info">
+                <strong>🎵 Ascult muzica pe Spotify</strong>
+                <p className="song-title">{data.data.spotify.song}</p>
+                <p><span className="by-text">by</span> {data.data.spotify.artist}</p>
+              </div>
+            </div>
           </div>
         </a>
       )}
