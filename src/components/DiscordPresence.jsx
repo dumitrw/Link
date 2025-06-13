@@ -3,6 +3,12 @@ import './DiscordPresence.css';
 
 const DISCORD_ID = '268156620050006017';
 
+const formatTime = (ms) => {
+  const minutes = Math.floor(ms / 60000);
+  const seconds = Math.floor((ms % 60000) / 1000);
+  return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+};
+
 const statusColors = {
   online: { 
     main: '#43B54C',
@@ -106,32 +112,40 @@ export default function DiscordPresence() {
             </p>
           </div>
         </div>      
-        {data.data.activities?.filter(activity => activity.type !== 2).map((activity) => (
-          <div key={activity.id} className="activity-link">
-            <div className="activity-section">
-              <div className="activity-container">
-                {activity.assets?.large_image && (
-                  <img 
-                    src={activity.assets.large_image.startsWith('mp:external/') 
-                      ? `https://media.discordapp.net/external/${activity.assets.large_image.slice(12)}`
-                      : `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`
-                    } 
-                    alt={activity.assets.large_text || `${activity.name} icon`}
-                    className="activity-image"
-                  />
-                )}
-                <div className="activity-info">
-                  <strong>🎮 {activity.name}</strong>
-                  {activity.details && <p className="activity-title">{activity.details}</p>}
-                  {activity.state && <p>{activity.state}</p>}
-                  {activity.timestamps?.start && (
-                    <p><span className="time-text">⏰</span> {Math.floor((Date.now() - activity.timestamps.start) / 60000)} minute</p>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+     {data.data.activities?.filter(activity => activity.type !== 2).map((activity) => (
+  <div key={activity.id} className="activity-link">
+    <div className="activity-section">
+      <div className="activity-container">
+        {activity.assets?.large_image && (
+          <img 
+            src={activity.assets.large_image.startsWith('mp:external/') 
+              ? `https://media.discordapp.net/external/${activity.assets.large_image.slice(12)}`
+              : `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`
+            } 
+            alt={activity.assets.large_text || `${activity.name} icon`}
+            className="activity-image"
+          />
+        )}
+        <div className="activity-info">
+          <strong>
+             {activity.name === 'Stremio' ? '🎬' : '🎮'} {activity.name}
+          </strong>
+          {activity.details && <p className="activity-title">{activity.details}</p>}
+          {activity.state && <p>{activity.state}</p>}
+          {activity.timestamps?.start && (
+            <p>
+              <span className="time-text">⏳</span>
+              {activity.name === 'Stremio' && activity.timestamps.end
+                ? `${formatTime(Date.now() - activity.timestamps.start)}/${formatTime(activity.timestamps.end - activity.timestamps.start)}`
+                : `${Math.floor((Date.now() - activity.timestamps.start) / 60000)} minute`
+              }
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+))}
       </div>
 
       {data.data.listening_to_spotify && data.data.spotify && (
