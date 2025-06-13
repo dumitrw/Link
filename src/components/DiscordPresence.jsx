@@ -86,24 +86,55 @@ export default function DiscordPresence() {
   if (!data?.success) return <div>No presence data available</div>;
 
   return (
-    <div className="discord-card">      <div className="user-section">
-        <a href={`https://discord.com/users/${DISCORD_ID}`} target="_blank" rel="noopener noreferrer">
-          <img 
-            src={`https://cdn.discordapp.com/avatars/${DISCORD_ID}/${data.data.discord_user.avatar}.png?size=128`}
-            alt="Discord avatar"
-            className="avatar"
-          />
-        </a>
-        <div>
-          <h3>
-            {data.data.discord_user.username || data.data.discord_user.global_name}
-            <span className="guild-tag">&#60;3</span>
-          </h3>
-          <p className={`status ${data.data.discord_status}`}>
-            {data.data.discord_status}
-          </p>
-        </div>
-      </div>      {data.data.listening_to_spotify && data.data.spotify && (
+    <div className="presence-wrapper">
+      <div className="discord-card">      
+        <div className="user-section">
+          <a href={`https://discord.com/users/${DISCORD_ID}`} target="_blank" rel="noopener noreferrer">
+            <img 
+              src={`https://cdn.discordapp.com/avatars/${DISCORD_ID}/${data.data.discord_user.avatar}.png?size=128`}
+              alt="Discord avatar"
+              className="avatar"
+            />
+          </a>
+          <div>
+            <h3>
+              {data.data.discord_user.username || data.data.discord_user.global_name}
+              <span className="guild-tag">&#60;3</span>
+            </h3>
+            <p className={`status ${data.data.discord_status}`}>
+              {data.data.discord_status}
+            </p>
+          </div>
+        </div>      
+        {data.data.activities?.filter(activity => activity.type !== 2).map((activity) => (
+          <div key={activity.id} className="activity-link">
+            <div className="activity-section">
+              <div className="activity-container">
+                {activity.assets?.large_image && (
+                  <img 
+                    src={activity.assets.large_image.startsWith('mp:external/') 
+                      ? `https://media.discordapp.net/external/${activity.assets.large_image.slice(12)}`
+                      : `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`
+                    } 
+                    alt={activity.assets.large_text || `${activity.name} icon`}
+                    className="activity-image"
+                  />
+                )}
+                <div className="activity-info">
+                  <strong>🎮 {activity.name}</strong>
+                  {activity.details && <p className="activity-title">{activity.details}</p>}
+                  {activity.state && <p>{activity.state}</p>}
+                  {activity.timestamps?.start && (
+                    <p><span className="time-text">⏰</span> {Math.floor((Date.now() - activity.timestamps.start) / 60000)} minute</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {data.data.listening_to_spotify && data.data.spotify && (
         <a 
           href={`https://open.spotify.com/track/${data.data.spotify.track_id}`}
           target="_blank"
@@ -126,8 +157,6 @@ export default function DiscordPresence() {
           </div>
         </a>
       )}
-      
-      {/* Add styling as needed */}
     </div>
   );
 }

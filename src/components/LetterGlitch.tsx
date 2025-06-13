@@ -1,7 +1,7 @@
 import { useRef, useEffect, useCallback } from "react";
 
 const LetterGlitch = ({
-  glitchColors = ['#747F8D', '#36393F', '#4F545C'],
+  glitchColors = ['#747F8D', '#36393F', '#4F545C'], // Default to offline colors
   glitchSpeed = 50,
   centerVignette = true,
   outerVignette = true,
