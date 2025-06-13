@@ -7,26 +7,30 @@
   width: 100%;
   margin: 0.1rem auto;
   box-sizing: border-box;
+  
 }
 
 /* Card Discord principal */
 .discord-card {
   --status-color: rgba(116, 127, 141, 0.37);
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.055);
   border-radius: 15px;
   padding: 1.1rem;
   width: 100%;
   box-sizing: border-box;
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(3px);
+  border: 1px solid rgba(255, 255, 255, 0.507);
   box-shadow: 0 8px 32px 0 var(--status-color);
   transition: all 0.3s ease;
   margin-bottom: 1.5rem; /* Adăugat spațiu după card */
+  z-index: 999;
 }
 
 .discord-card:hover {
+  backdrop-filter: blur(10px);
   transform: translateY(-5px);
   box-shadow: 0 10px 40px 0 var(--status-color);
+  z-index: 999;
 }
 
 /* Secțiunea utilizator */
@@ -78,20 +82,21 @@
   width: 100%;
   display: block;
   cursor: pointer;
-  background: rgba(2, 41, 2, 0.103);
+  background: rgba(2, 41, 2, 0.048);
   border-radius: 15px;
-  backdrop-filter: blur(3px);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(29, 185, 84, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-bottom: 0.5rem; /* Adăugat spațiu după spotify link */
+  backdrop-filter: blur(2px);
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+  z-index: 999;
 }
 
 .spotify-link:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 40px 0 rgba(29, 185, 84, 0.3);
+  backdrop-filter: blur(5px);
+  background: rgba(2, 41, 2, 0.1);
 }
-
 .spotify-section {
   background: rgba(0, 0, 0, 0);
   padding: 0.4rem;
@@ -99,15 +104,18 @@
   width: 100%;
   box-sizing: border-box;
   min-height: 100px;
-  backdrop-filter: blur(3px);
-  border: 1px solid rgba(29, 185, 84, 0.2);
+  backdrop-filter: blur(2px);
+  border: 2px solid rgba(4, 233, 84, 0.315);
+  box-shadow: 0 8px 32px 0 rgba(29, 185, 84, 0.404);
+  transition: all 0.3s ease;
   margin-bottom: 1.5rem; /* Mărit spațiul între secțiuni */
 }
 
 .spotify-section:hover {
-  background: rgba(29, 185, 84, 0.15);
+  background: rgba(14, 126, 25, 0.089);
   transform: translateY(-2px);
-  border-color: rgba(29, 185, 84, 0.4);
+  border-color: rgba(0, 255, 89, 0.4);
+  box-shadow: 0 12px 32px 0 rgba(29, 185, 84, 0.3);
 }
 
 .spotify-section:last-child {
@@ -208,19 +216,19 @@
 }
 
 .activity-link:hover .activity-section {
-  background: rgba(29, 91, 185, 0.096);
-  transform: translateX(5px);
+  background: rgba(37, 37, 37, 0.322);
+  transform: translateX(2px);
 }
 
 .activity-section {
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.493);
   padding: 0.8rem;
   border-radius: 12px;
   width: 100%;
   box-sizing: border-box;
   min-height: 100px;
   backdrop-filter: blur(4px);
-  border: 1px solid rgba(0, 183, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.13);
   margin-bottom: 1.5rem; /* Mărit spațiul între secțiuni */
 }
 
@@ -229,7 +237,7 @@
 }
 
 .activity-section:hover {
-  background: rgba(1, 49, 77, 0.15);
+  background: rgba(83, 83, 83, 0.15);
   transform: translateX(5px);
 }
 
