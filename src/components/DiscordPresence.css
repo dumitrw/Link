@@ -43,8 +43,8 @@
 }
 
 .avatar {
-  width: 80px;
-  height: 80px;
+  width: 85px;
+  height: 85px;
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.589);
   transition: transform 0.3s ease;
@@ -154,7 +154,7 @@
   margin-left: 0.5rem;
   font-weight: 400;
   background: rgba(255, 255, 255, 0.1);
-  padding: 0.2rem 0.5rem;
+  padding: 0.1rem 0.3rem;
   border-radius: 4px;
   display: inline-block;
   vertical-align: middle;
@@ -292,4 +292,30 @@
   .activity-section, .spotify-section {
     margin-bottom: 1rem; /* Ajustat pentru mobile */
   }
+}
+.discord-badges {
+  display: flex;
+  justify-content: center;           /* Centrează badge-urile pe orizontală */
+  align-items: center;               /* Centrează pe verticală */
+  gap: 6px;                          /* Distanță vizibilă între badge-uri */
+  margin: 0 auto;                    /* Centrează caseta în containerul părinte */
+  margin-top: 2px;
+  background: rgba(141, 141, 141, 0.144);/* Ușor mai opac și dark */
+  padding: 1px 6px;                 /* Padding minim pentru un aspect compact */
+  border-radius: 4px;               /* Colțuri mai rotunjite să semene cu Discord */
+  width: fit-content;                /* Caseta se mulează pe conținut */
+  min-width: 0;                      /* Evită lățimea inutilă */
+  backdrop-filter: blur(10px);
+  box-sizing: border-box;
+}
+
+.discord-badge {
+  width: 14px;                       /* Un pic mai mare, să fie clar */
+  height: 14px;
+  transition: transform 0.11s;
+  vertical-align: middle;
+}
+.discord-badge:hover {
+  transform: scale(1.14);
+  filter: brightness(1.13);
 }
