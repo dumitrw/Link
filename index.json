@@ -32,7 +32,13 @@
       "network": "YouTube",
       "username": "JSONLinks",
       "url": "https://www.youtube.com/@dumitrw"
-    }
+    },
+    {
+
+      "network": "Steam",
+      "username": "JSONLinks",
+      "url": "https://steamcommunity.com/id/fvckyxu",
+    },
   ],
   "featured": [
     {
@@ -52,15 +58,6 @@
       "network": "Discord",
       "url": "https://discord.com/invite/JXTxD3gy9r",
       "title": "Server Discord",
-      "textColor": "#FFF",
-      "backgroundColor": "#ff000000",
-      "borderRadius": ".75rem"
-    },
-    {
-
-      "network": "Steam",
-      "url": "https://steamcommunity.com/id/fvckyxu",
-      "title": "Profil Steam",
       "textColor": "#FFF",
       "backgroundColor": "#ff000000",
       "borderRadius": ".75rem"
