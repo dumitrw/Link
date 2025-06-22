@@ -62,11 +62,13 @@ const SOCIAL_ICONS: Record<string, any> = {
 
 <style>
   .container {
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 0.8rem;
+    z-index: 9999;
   }
 
   .container a {
@@ -80,11 +82,14 @@ const SOCIAL_ICONS: Record<string, any> = {
     width: 50px;
     border-radius: 6px;
     transition: all 0.3s ease;
+    z-index: 9999;
+   
   }
 
   .container a:hover {
     color: black;
     background: #fff;
     border: 1px solid #ddd;
+    z-index: 9999;
   }
 </style>
