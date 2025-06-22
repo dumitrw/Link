@@ -38,6 +38,10 @@
       "network": "Steam",
       "username": "dima",
       "url": "https://steamcommunity.com/id/fvckyxu"
+    },
+    {
+      "network": "Discord",
+      "url": "https://discord.com/invite/JXTxD3gy9r"
     }
   ],
   "featured": [
@@ -53,15 +57,6 @@
   ],
   "buttons": [
 
-
-    {
-      "network": "Discord",
-      "url": "https://discord.com/invite/JXTxD3gy9r",
-      "title": "Server Discord",
-      "textColor": "#FFF",
-      "backgroundColor": "#ff000000",
-      "borderRadius": ".75rem"
-    },
     {
       "network": "Link",
       "url": "https://www.tipeeestream.com/dumitrw/donation",
