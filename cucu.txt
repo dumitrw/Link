@@ -1,0 +1,11 @@
+ "buttons": [
+
+    {
+      "network": "Link",
+      "url": "https://www.tipeeestream.com/dumitrw/donation",
+      "title": "TipeeeStream",
+      "textColor": "#FFF",
+      "backgroundColor": "#ff000000",
+      "borderRadius": ".75rem"
+    }
+  ], 
