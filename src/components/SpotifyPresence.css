@@ -157,11 +157,11 @@
 /* Responsive pentru mobile */
 @media screen and (max-width: 480px) {
   .spotify-section {
-    max-width: 100vw;
+    max-width: 99vw;
     min-width: 0;
   }
   .spotify-album {
-    gap: 0.5rem;
+    gap: 0.8rem;
     padding: 0.6rem;
   }
   .album-art {
@@ -174,10 +174,10 @@
   .spotify-presence-title,
   .song-title,
   .song-artist {
-    max-width: 190px;
+    max-width: 230px;
   }
   .spotify-progress-bar {
-    width: 140px;
+    width: 160px;
     min-width: 80px;
     max-width: 230px;
     overflow: hidden;
