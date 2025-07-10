@@ -5,8 +5,8 @@ import Socials from "@/components/sections/Socials.astro";
 import Featured from "@/components/sections/Featured.astro";
 import Footer from "@/components/sections/Footer.astro";
 import SplashCursor from "@/components/SplashCursor.jsx";
-import DiscordPresence from "@/components/DiscordPresence.jsx";
 import LetterGlitch from "@/components/LetterGlitch.jsx";
+import Presence from "@/components/Presence.jsx";
 ---
 
 <Layout title="link-uri">
@@ -30,7 +30,7 @@ import LetterGlitch from "@/components/LetterGlitch.jsx";
   </main>
   <Footer />
 
-<DiscordPresence client:only="react" />
+<Presence client:only="react"/>
 
 <!--  <img
     src="https://lanyard.cnrad.dev/api/268156620050006017"

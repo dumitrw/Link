@@ -1,0 +1,186 @@
+.spotify-link {
+  text-decoration: none;
+  width: 100%;
+  display: block;
+  cursor: pointer;
+  background: rgba(2, 41, 2, 0.048);
+  border-radius: 15px;
+  backdrop-filter: blur(2px);
+  margin-bottom: 0.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+  z-index: 998;
+}
+
+.spotify-link:hover {
+  transform: translateY(-5px);
+  backdrop-filter: blur(5px);
+  background: rgba(2, 41, 2, 0.1);
+}
+
+.spotify-section {
+  background: rgba(0, 0, 0, 0);
+  padding: 0.4rem;
+  border-radius: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 100px;
+    max-width: 480px;
+  backdrop-filter: blur(2px);
+  border: 2px solid rgba(4, 233, 84, 0.315);
+  box-shadow: 0 8px 32px 0 rgba(29, 185, 84, 0.404);
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.spotify-section:hover {
+  background: rgba(14, 126, 25, 0.089);
+  transform: translateY(-2px);
+  border-color: rgba(0, 255, 89, 0.4);
+  box-shadow: 0 12px 32px 0 rgba(29, 185, 84, 0.3);
+}
+
+.spotify-section:last-child {
+  margin-bottom: 0;
+}
+
+/* container pentru coperta + info */
+.spotify-album {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  padding: 0.8rem;
+  box-sizing: border-box;
+}
+
+.album-art {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.spotify-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  min-width: 0;
+}
+
+/* Titlul verde (spațiu mai mare sub el) */
+.spotify-presence-title {
+  color: #1DB954;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 0.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 330px;
+}
+
+/* Blocul cu titlu, autor, bară progres (spațiu mic între ele) */
+.spotify-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.14rem;
+  min-width: 0;
+}
+
+.song-title,
+.song-artist {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 330px; /* sau 100% dacă vrei responsive */
+}
+
+/* Titlu melodie */
+.song-title {
+  font-weight: 600;
+  color: #fff;
+  font-size: 1.01rem;
+  line-height: 1.17;
+  margin-bottom: 0.09rem;
+}
+
+/* Artist */
+.song-artist {
+  margin-bottom: 0.14rem;
+}
+
+/* "by" de la artist */
+.by-text {
+  font-weight: 300;
+  opacity: 0.8;
+  font-size: 0.92rem;
+}
+
+/* Bara de progres */
+.spotify-progress-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 0.17rem;
+}
+
+.spotify-progress-bar {
+  position: relative;
+  height: 6px;
+  background: #222;
+  border-radius: 4px;
+  /* Lățime fixă, nu depinde de text */
+  width: 180px;
+  min-width: 120px;
+  max-width: 220px;
+  overflow: hidden;
+}
+
+.spotify-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #1ed760 60%, #09662a 100%);
+  border-radius: 4px;
+  transition: width 0.2s linear;
+}
+
+.spotify-time {
+  font-size: 10px;
+  color: #AAA;
+  min-width: 32px;
+  text-align: center;
+}
+
+/* Responsive pentru mobile */
+@media screen and (max-width: 480px) {
+  .spotify-section {
+    max-width: 99vw;
+    min-width: 0;
+  }
+  .spotify-album {
+    gap: 0.5rem;
+    padding: 0.6rem;
+  }
+  .album-art {
+    width: 60px;
+    height: 60px;
+  }
+  .spotify-meta {
+    min-width: 0;
+  }
+  .spotify-presence-title,
+  .song-title,
+  .song-artist {
+    max-width: 140px;
+  }
+  .spotify-progress-bar {
+    width: 80px;
+    min-width: 60px;
+    max-width: 130px;
+    overflow: hidden;
+    position: relative;
+  }
+}

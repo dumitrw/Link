@@ -2,12 +2,11 @@
 .presence-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem; /* Mărit spațiul între activități */
+  gap: 1.5rem;
   max-width: 400px;
   width: 100%;
   margin: 0.1rem auto;
   box-sizing: border-box;
-  
 }
 
 /* Card Discord principal */
@@ -22,7 +21,7 @@
   border: 1px solid rgba(255, 255, 255, 0.507);
   box-shadow: 0 8px 32px 0 var(--status-color);
   transition: all 0.3s ease;
-  margin-bottom: 1.5rem; /* Adăugat spațiu după card */
+  margin-bottom: 1.5rem;
   z-index: 998;
 }
 
@@ -33,7 +32,6 @@
   z-index: 998;
 }
 
-/* Secțiunea utilizator */
 .user-section {
   display: flex;
   align-items: center;
@@ -76,77 +74,6 @@
 .status.dnd { color: #e02c2c; }
 .status.offline { color: #747F8D; }
 
-/* Spotify styles */
-.spotify-link {
-  text-decoration: none;
-  width: 100%;
-  display: block;
-  cursor: pointer;
-  background: rgba(2, 41, 2, 0.048);
-  border-radius: 15px;
-  backdrop-filter: blur(2px);
-  margin-bottom: 0.5rem;
-  position: relative;
-  transition: all 0.3s ease;
-  z-index: 998;
-}
-
-.spotify-link:hover {
-  transform: translateY(-5px);
-  backdrop-filter: blur(5px);
-  background: rgba(2, 41, 2, 0.1);
-}
-.spotify-section {
-  background: rgba(0, 0, 0, 0);
-  padding: 0.4rem;
-  border-radius: 12px;
-  width: 100%;
-  box-sizing: border-box;
-  min-height: 100px;
-  backdrop-filter: blur(2px);
-  border: 2px solid rgba(4, 233, 84, 0.315);
-  box-shadow: 0 8px 32px 0 rgba(29, 185, 84, 0.404);
-  transition: all 0.3s ease;
-  margin-bottom: 1.5rem; /* Mărit spațiul între secțiuni */
-}
-
-.spotify-section:hover {
-  background: rgba(14, 126, 25, 0.089);
-  transform: translateY(-2px);
-  border-color: rgba(0, 255, 89, 0.4);
-  box-shadow: 0 12px 32px 0 rgba(29, 185, 84, 0.3);
-}
-
-.spotify-section:last-child {
-  margin-bottom: 0;
-}
-
-.spotify-section strong {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #1DB954;
-  font-size: 0.8rem;
-}
-
-.spotify-section p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-/* Song info styles */
-.song-title {
-  font-weight: 600;
-  margin: 0;
-  color: #fff;
-}
-
-.by-text {
-  font-weight: 300;
-  opacity: 0.8;
-  font-size: 0.9rem;
-}
-
 /* Guild tag styles */
 .guild-tag {
   font-size: 0.8rem;
@@ -165,8 +92,8 @@
   color: rgba(255, 255, 255, 0.692);
 }
 
-/* Container styles pentru activity și spotify */
-.activity-container, .spotify-album {
+/* Container styles pentru activity */
+.activity-container {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -174,8 +101,7 @@
   padding: 0.8rem;
 }
 
-/* Image styles pentru activity și spotify */
-.activity-image, .album-art {
+.activity-image {
   width: 80px;
   height: 80px;
   border-radius: 8px;
@@ -184,8 +110,7 @@
   margin-right: 0.5rem;
 }
 
-/* Info container styles pentru activity și spotify */
-.activity-info, .spotify-info {
+.activity-info {
   flex: 1;
   min-width: 0;
   max-width: calc(100% - 90px);
@@ -194,9 +119,8 @@
   gap: 0.3rem;
 }
 
-/* Text styles pentru activity și spotify */
-.activity-info p, .spotify-info p,
-.activity-info strong, .spotify-info strong {
+.activity-info p,
+.activity-info strong {
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -205,13 +129,12 @@
   display: block;
 }
 
-/* Activity styles */
 .activity-link {
   text-decoration: none;
   width: 100%;
   display: block;
   cursor: pointer;
-  margin-bottom: 0.5rem; /* Adăugat spațiu între link-uri */
+  margin-bottom: 0.5rem;
 }
 
 .activity-link:hover .activity-section {
@@ -228,7 +151,7 @@
   min-height: 100px;
   backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.13);
-  margin-bottom: 1.5rem; /* Mărit spațiul între secțiuni */
+  margin-bottom: 1.5rem;
 }
 
 .activity-section:last-child {
@@ -265,52 +188,25 @@
   font-size: 0.9rem;
 }
 
-/* Media query pentru dispozitive mobile */
-@media screen and (max-width: 480px) {
-  .activity-container, .spotify-album {
-    gap: 0.5rem;
-    padding: 0.6rem;
-  }
-  
-  .activity-info, .spotify-info {
-    max-width: 100%;
-  }
-  
-  .activity-image, .album-art {
-    width: 60px;
-    height: 60px;
-  }
-  
-  .user-section h3 {
-    font-size: 1.2rem;
-  }
-
-  .presence-wrapper {
-    gap: 1rem; /* Ajustat pentru mobile */
-  }
-
-  .activity-section, .spotify-section {
-    margin-bottom: 1rem; /* Ajustat pentru mobile */
-  }
-}
+/* Badge styles */
 .discord-badges {
   display: flex;
-  justify-content: center;           /* Centrează badge-urile pe orizontală */
-  align-items: center;               /* Centrează pe verticală */
-  gap: 6px;                          /* Distanță vizibilă între badge-uri */
-  margin: 0 auto;                    /* Centrează caseta în containerul părinte */
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 0 auto;
   margin-top: 2px;
-  background: rgba(141, 141, 141, 0.144);/* Ușor mai opac și dark */
-  padding: 1px 6px;                 /* Padding minim pentru un aspect compact */
-  border-radius: 4px;               /* Colțuri mai rotunjite să semene cu Discord */
-  width: fit-content;                /* Caseta se mulează pe conținut */
-  min-width: 0;                      /* Evită lățimea inutilă */
+  background: rgba(141, 141, 141, 0.144);
+  padding: 1px 6px;
+  border-radius: 4px;
+  width: fit-content;
+  min-width: 0;
   backdrop-filter: blur(10px);
   box-sizing: border-box;
 }
 
 .discord-badge {
-  width: 14px;                       /* Un pic mai mare, să fie clar */
+  width: 14px;
   height: 14px;
   transition: transform 0.11s;
   vertical-align: middle;
@@ -318,4 +214,28 @@
 .discord-badge:hover {
   transform: scale(1.14);
   filter: brightness(1.13);
+}
+
+/* Media query pentru dispozitive mobile */
+@media screen and (max-width: 480px) {
+  .activity-container {
+    gap: 0.5rem;
+    padding: 0.6rem;
+  }
+  .activity-info {
+    max-width: 100%;
+  }
+  .activity-image {
+    width: 60px;
+    height: 60px;
+  }
+  .user-section h3 {
+    font-size: 1.2rem;
+  }
+  .presence-wrapper {
+    gap: 1rem;
+  }
+  .activity-section {
+    margin-bottom: 1rem;
+  }
 }
