@@ -157,7 +157,7 @@
 /* Responsive pentru mobile */
 @media screen and (max-width: 480px) {
   .spotify-section {
-    max-width: 99vw;
+    max-width: 100vw;
     min-width: 0;
   }
   .spotify-album {
@@ -165,8 +165,8 @@
     padding: 0.6rem;
   }
   .album-art {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
   }
   .spotify-meta {
     min-width: 0;
@@ -174,12 +174,12 @@
   .spotify-presence-title,
   .song-title,
   .song-artist {
-    max-width: 140px;
+    max-width: 190px;
   }
   .spotify-progress-bar {
-    width: 80px;
-    min-width: 60px;
-    max-width: 130px;
+    width: 140px;
+    min-width: 80px;
+    max-width: 230px;
     overflow: hidden;
     position: relative;
   }
