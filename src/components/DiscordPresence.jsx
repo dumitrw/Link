@@ -4,11 +4,11 @@ import './DiscordPresence.css';
 const DISCORD_ID = '268156620050006017';
 
 const MANUAL_BADGES = [
-  {
-    name: "Nitro",
-    icon: "/badges/nitro.png",
-    link: "https://discord.com/nitro"
-  },
+  // {
+  //   name: "Nitro",
+  //   icon: "/badges/nitro.png",
+  //   link: "https://discord.com/nitro"
+  // },
   {
     name: "HypeSquad Brilliance",
     icon: "/badges/brilliance.png",
