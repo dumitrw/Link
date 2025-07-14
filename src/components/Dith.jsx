@@ -6,12 +6,12 @@ function Dith() {
   <Dither
     waveColor={[0.5, 0.5, 0.5]}
     disableAnimation={false}
-    enableMouseInteraction={true}
-    mouseRadius={0.1}
+    enableMouseInteraction={false}
+    mouseRadius={0}
     colorNum={8}
-    waveAmplitude={0.25}
-    waveFrequency={3.5}
-    waveSpeed={0.02}
+    waveAmplitude={0.26}
+    waveFrequency={3}
+    waveSpeed={0.01}
   />
 
   );
