@@ -9,8 +9,8 @@ function Dith() {
     enableMouseInteraction={false}
     mouseRadius={0}
     colorNum={8}
-    waveAmplitude={0.26}
-    waveFrequency={3}
+    waveAmplitude={0.22}
+    waveFrequency={2}
     waveSpeed={0.01}
   />
 

@@ -63,7 +63,7 @@ float cnoise(vec2 P) {
   return 2.3 * mix(n_x.x, n_x.y, fade_xy.y);
 }
 
-const int OCTAVES = 8;
+const int OCTAVES = 4;
 float fbm(vec2 p) {
   float value = 0.0;
   float amp = 1.0;
@@ -193,8 +193,19 @@ function DitheredWaves({
       res.set(w, h);
     }
   }, [size, gl]);
+  
+  useEffect(() => {
+  const handleVisibilityChange = () => {
+    if (document.hidden) setPaused(true);
+    else setPaused(false);
+  };
+  document.addEventListener("visibilitychange", handleVisibilityChange);
+  return () => {
+    document.removeEventListener("visibilitychange", handleVisibilityChange);
+  };
+}, []);
 
-  useFrame(({ clock }) => {
+  useFrame(({ clock }) => {  
     const u = waveUniformsRef.current;
     if (!disableAnimation) u.time.value = clock.getElapsedTime();
     u.waveSpeed.value = waveSpeed;
@@ -206,6 +217,7 @@ function DitheredWaves({
     if (enableMouseInteraction) {
       u.mousePos.value.set(mousePos.x, mousePos.y);
     }
+  
   });
 
   const handlePointerMove = (e) => {
@@ -259,10 +271,10 @@ export default function Dither({
 }) {
   return (
     <Canvas
-      className="dither-container"
-      camera={{ position: [0, 0, 6] }}
-      dpr={window.devicePixelRatio}
-      gl={{ antialias: true, preserveDrawingBuffer: true }}
+        className="dither-container"
+  camera={{ position: [0, 0, 6] }}
+  dpr={Math.min(window.devicePixelRatio, 1)} // forțează 1x dpr (evită 2x sau 3x)
+  gl={{ antialias: false, preserveDrawingBuffer: false }}
     >
       <DitheredWaves
         waveSpeed={waveSpeed}
