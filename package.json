@@ -12,13 +12,17 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/react": "^4.3.0",
+    "@react-three/fiber": "^9.2.0",
+    "@react-three/postprocessing": "^3.0.4",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.6",
     "@types/ws": "^8.18.1",
     "astro": "^5.8.2",
     "gsap": "^3.13.0",
+    "postprocessing": "^6.37.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "three": "^0.178.0",
     "typescript": "^5.5.3",
     "ws": "^8.18.2"
   }

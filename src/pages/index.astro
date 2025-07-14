@@ -7,10 +7,11 @@ import Footer from "@/components/sections/Footer.astro";
 import SplashCursor from "@/components/SplashCursor.jsx";
 import LetterGlitch from "@/components/LetterGlitch.jsx";
 import Presence from "@/components/Presence.jsx";
+import Dith from "@/components/Dith.jsx";
 ---
 
 <Layout title="link-uri">
-  <div class="glitch-container"> 
+  <!-- <div class="glitch-container"> 
     <LetterGlitch
       client:only="react"
       glitchColors={["#747F8D", "#36393F", "#4F545C"]}
@@ -20,6 +21,9 @@ import Presence from "@/components/Presence.jsx";
       smooth={true}
       opacity={0.2}
     />
+  </div> -->
+   <div class="glitch-container">
+  <Dith client:only="react" />
   </div>
   <SplashCursor client:only="react" />
   <main>
