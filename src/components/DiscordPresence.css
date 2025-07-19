@@ -241,3 +241,42 @@
     margin-bottom: 1rem;
   }
 }
+/* --- NOU: Stiluri specifice pentru activitatea Stremio și bara sa de progres --- */
+
+.stremio-activity {
+    border: 2px solid #00bcdd6b;
+    border-radius: 30px;
+}
+
+.stremio-image {
+    /* Stiluri specifice pentru imaginea activității Stremio dacă e cazul */
+}
+
+.stremio-progress-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 7px; /* Spațiu între timp și bară */
+    width: 100%;
+    margin-top: 2px; /* Spațiu deasupra barei, ajustează dacă e nevoie */
+}
+
+.stremio-time {
+    font-size: 0.8em;
+    color: #b3b3b3;
+    flex-shrink: 0; /* Nu permite textului timpului să se micșoreze */
+}
+
+.stremio-progress-bar {
+    flex-grow: 1; /* Permite barei să ocupe spațiul rămas */
+    height: 4px;
+    background-color: #535353; /* Gri închis pentru fundalul barei */
+    border-radius: 2px;
+    overflow: hidden; /* Asigură că progresul nu iese din bara */
+}
+
+.stremio-progress {
+    height: 100%;
+    background-color: #00bcdd; /* Culoarea Discord, sau o altă culoare dacă vrei */
+    border-radius: 2px;
+    transition: width 0.1s linear; /* Animație fluidă pentru umplerea barei */
+}

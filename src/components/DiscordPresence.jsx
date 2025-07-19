@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import './DiscordPresence.css';
+import './DiscordPresence.css'; // Acest fișier CSS va conține acum doar stilurile pentru Discord și Stremio
 
 const DISCORD_ID = '268156620050006017';
 
 const MANUAL_BADGES = [
-
   {
     name: "HypeSquad Brilliance",
     icon: "/badges/brilliance.png",
@@ -52,7 +51,7 @@ const statusColors = {
 
 const formatTime = (ms) => {
   const minutes = Math.floor(ms / 60000);
-  const seconds = Math.floor(ms / 1000) % 60;
+  const seconds = Math.floor((ms / 1000) % 60);
   return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 };
 
@@ -60,6 +59,7 @@ export default function DiscordPresence() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [stremioElapsed, setStremioElapsed] = useState(0); // Stare pentru timpul Stremio
 
   useEffect(() => {
     const fetchPresence = async () => {
@@ -75,7 +75,6 @@ export default function DiscordPresence() {
             const card = document.querySelector('.discord-card');
             if (card && statusConfig) {
               card.style.setProperty('--status-color', statusConfig.shadow);
-              // Emit status color change event immediately
               const event = new CustomEvent('discord-status-change', {
                 detail: { colors: statusConfig.glitchColors }
               });
@@ -96,6 +95,41 @@ export default function DiscordPresence() {
     const interval = setInterval(fetchPresence, 5000);
     return () => clearInterval(interval);
   }, []);
+
+  // Efect pentru a anima bara de progres Stremio
+  useEffect(() => {
+    const stremioActivity = data?.data?.activities?.find(
+      (activity) => activity.name === 'Stremio' && activity.timestamps?.start && activity.timestamps?.end
+      // ^^^^^^ Asigură-te că 'Stremio' este numele exact.
+    );
+
+    if (!stremioActivity) {
+      setStremioElapsed(0); // Resetează elapsed dacă nu există activitate Stremio validă
+      return;
+    }
+
+    const start = stremioActivity.timestamps.start;
+    const end = stremioActivity.timestamps.end;
+    let rafId;
+
+    function updateStremioProgress() {
+      setStremioElapsed(Math.min(Date.now() - start, end - start));
+      rafId = requestAnimationFrame(updateStremioProgress);
+    }
+
+    const currentTime = Date.now();
+    if (currentTime >= start && currentTime < end) {
+      updateStremioProgress(); // Pornim animația doar dacă se redă
+    } else {
+      setStremioElapsed(end - start); // Setăm la 100% dacă s-a terminat
+    }
+
+    return () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+    };
+  }, [data]); // Rulăm acest efect ori de câte ori datele Lanyard se actualizează
 
   if (loading) return <div>Loading Discord presence...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -144,40 +178,90 @@ export default function DiscordPresence() {
             </p>
           </div>
         </div>
-        {data.data.activities?.filter(activity => activity.type !== 2).map((activity) => (
-          <div key={activity.id} className="activity-link">
-            <div className="activity-section">
-              <div className="activity-container">
-                {activity.assets?.large_image && (
-                  <img
-                    src={activity.assets.large_image.startsWith('mp:external/')
-                      ? `https://media.discordapp.net/external/${activity.assets.large_image.slice(12)}`
-                      : `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`
-                    }
-                    alt={activity.assets.large_text || `${activity.name} icon`}
-                    className="activity-image"
-                  />
-                )}
-                <div className="activity-info">
-                  <strong>
-                    {activity.name === 'Stremio' ? '🎬' : '🎮'} {activity.name}
-                  </strong>
-                  {activity.details && <p className="activity-title">{activity.details}</p>}
-                  {activity.state && <p>{activity.state}</p>}
-                  {activity.timestamps?.start && (
-                    <p>
-                      <span className="time-text">⏳</span>
-                      {activity.name === 'Stremio' && activity.timestamps.end
-                        ? `${formatTime(Date.now() - activity.timestamps.start)}/${formatTime(activity.timestamps.end - activity.timestamps.start)}`
-                        : `${Math.floor((Date.now() - activity.timestamps.start) / 60000)} minute`
-                      }
-                    </p>
-                  )}
+
+        {/* Randăm doar activitățile relevante pentru DiscordPresence: Stremio și alte activități non-Spotify */}
+        {data.data.activities?.filter(activity => activity.type !== 2 && activity.name !== 'Spotify').map((activity) => {
+          // NOU: Blocul pentru activitatea Stremio (inclusiv bara de progres)
+          if (activity.name === 'Stremio' && activity.timestamps?.start && activity.timestamps?.end) {
+            const start = activity.timestamps.start;
+            const end = activity.timestamps.end;
+            const duration = end - start;
+            const percent = Math.max(0, Math.min(100, (stremioElapsed / duration) * 100));
+            const isPlaying = (Date.now() >= start && Date.now() < end);
+            const statusText = isPlaying ? "📺 Urmăresc pe Stremio" : "📺 Am urmărit pe Stremio";
+
+            return (
+              <div key={activity.id} className="activity-link stremio-activity">
+                <div className="activity-section">
+                  <div className="activity-container">
+                    {activity.assets?.large_image && (
+                      <img
+                        src={activity.assets.large_image.startsWith('mp:external/')
+                          ? `https://media.discordapp.net/external/${activity.assets.large_image.slice(12)}`
+                          : `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`
+                        }
+                        alt={activity.assets.large_text || `${activity.name} icon`}
+                        className="activity-image stremio-image"
+                      />
+                    )}
+                    <div className="activity-info">
+                      <strong>{statusText}</strong>
+                      {activity.details && <p className="activity-title">{activity.details}</p>}
+                      {activity.state && <p>{activity.state}</p>}
+                      {/* Bara de progres Stremio */}
+                      <div className="stremio-progress-wrapper">
+                        <span className="stremio-time">{formatTime(stremioElapsed)}</span>
+                        <div className="stremio-progress-bar">
+                          <div
+                            className="stremio-progress"
+                            style={{ width: `${percent}%` }}
+                          />
+                        </div>
+                        <span className="stremio-time">{formatTime(duration)}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        ))}
+            );
+          } else {
+            // Blocul pentru toate celelalte activități (non-Spotify, non-Stremio)
+            // sau Stremio fără timestamps valide (deși ar trebui să fie filtrat sus)
+            return (
+              <div key={activity.id} className="activity-link">
+                <div className="activity-section">
+                  <div className="activity-container">
+                    {activity.assets?.large_image && (
+                      <img
+                        src={activity.assets.large_image.startsWith('mp:external/')
+                          ? `https://media.discordapp.net/external/${activity.assets.large_image.slice(12)}`
+                          : `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`
+                        }
+                        alt={activity.assets.large_text || `${activity.name} icon`}
+                        className="activity-image"
+                      />
+                    )}
+                    <div className="activity-info">
+                      <strong>
+                        {/* Nu mai avem "Stremio" aici, doar "🎮" pentru alte jocuri/activități */}
+                        {activity.name === 'Visual Studio Code' ? '💻' : '🎮'} {activity.name}
+                      </strong>
+                      {activity.details && <p className="activity-title">{activity.details}</p>}
+                      {activity.state && <p>{activity.state}</p>}
+                      {/* Pentru alte activități, afișăm timpul scurs în minute */}
+                      {activity.timestamps?.start && (
+                        <p>
+                          <span className="time-text">⏳</span>
+                          {`${Math.floor((Date.now() - activity.timestamps.start) / 60000)} minute`}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          }
+        })}
       </div>
     </div>
   );
