@@ -2,6 +2,7 @@
 import { socials } from "index.json";
 import Section from "@/components/Section.astro";
 
+// Import your icons
 import Discord from "@/icons/Discord.astro";
 import Instagram from "@/icons/Instagram.astro";
 import Link from "@/icons/Link.astro";
@@ -9,7 +10,24 @@ import Spotify from "@/icons/Spotify.astro";
 import YouTube from "@/icons/YouTube.astro";
 import Steam from "@/icons/Steam.astro";
 
-const SOCIAL_ICONS = {
+// --- FIX 1: Add an index signature to SOCIAL_ICONS ---
+// Define a type for your icon components
+interface SocialIconComponent {
+  (_props: Record<string, any>): any; // This describes what an icon component (Astro component) looks like
+}
+
+// Define the type for the SOCIAL_ICONS map with an index signature
+interface SocialIconsMap {
+  [key: string]: SocialIconComponent; // This is the crucial index signature
+  Discord: SocialIconComponent;
+  Instagram: SocialIconComponent;
+  Link: SocialIconComponent;
+  Spotify: SocialIconComponent;
+  Steam: SocialIconComponent;
+  YouTube: SocialIconComponent;
+}
+
+const SOCIAL_ICONS: SocialIconsMap = {
   Discord,
   Instagram,
   Link,
@@ -23,6 +41,7 @@ const SOCIAL_ICONS = {
   <div class="container" id="socials-container">
     {
       socials.map(({ network, url }, idx) => {
+        // TypeScript will now correctly understand SOCIAL_ICONS[network]
         const Icon = SOCIAL_ICONS[network];
         return (
           <a
@@ -129,19 +148,25 @@ const SOCIAL_ICONS = {
 </style>
 
 <script>
+  // --- FIX 2: Explicitly type event.currentTarget instead of using 'this' implicitly 'any' ---
   document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".social-link").forEach(link => {
-      link.addEventListener("click", function (e) {
+      link.addEventListener("click", function (e: Event) { // Add 'e: Event' to type the event
         e.preventDefault();
-        const url = this.href;
+
+        // Use 'e.currentTarget' and cast it to HTMLAnchorElement
+        const currentLink = e.currentTarget as HTMLAnchorElement;
+
+        const url = currentLink.href;
         // Afișează spinner
-        this.querySelector(".icon").style.opacity = "0.25";
-        this.querySelector(".spinner").style.display = "flex";
+        currentLink.querySelector<HTMLElement>(".icon")!.style.opacity = "0.25";
+        currentLink.querySelector<HTMLElement>(".spinner")!.style.display = "flex";
+
         setTimeout(() => {
           window.open(url, "_blank", "noopener,noreferrer");
           // Revine la stilul inițial
-          this.querySelector(".icon").style.opacity = "";
-          this.querySelector(".spinner").style.display = "none";
+          currentLink.querySelector<HTMLElement>(".icon")!.style.opacity = "";
+          currentLink.querySelector<HTMLElement>(".spinner")!.style.display = "none";
         }, 1100);
       });
     });

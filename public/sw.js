@@ -1,5 +1,5 @@
 // Versiunea cache-ului - modifică la fiecare deploy pentru a forța update
-const CACHE_NAME = 'dumitrw-cache-v6.1 fixes+redesign';
+const CACHE_NAME = 'dumitrw-cache-v6.2 fixes+redesign';
 
 // URLs care vor fi cache-uite la instalare
 const URLS_TO_CACHE = [
