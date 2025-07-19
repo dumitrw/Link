@@ -42,7 +42,7 @@ const SOCIAL_ICONS = {
 <Section>
   <div class="container" id="socials-container">
     {
-      socials.map(({ network, username, url }, idx) => {
+      socials.map(({ network, url }, idx) => {
         const Icon = SOCIAL_ICONS[network];
         return (
           <a
@@ -162,7 +162,7 @@ const SOCIAL_ICONS = {
           // Revine la stilul inițial
           this.querySelector(".icon").style.opacity = "";
           this.querySelector(".spinner").style.display = "none";
-        }, 1000);
+        }, 1100);
       });
     });
   });
