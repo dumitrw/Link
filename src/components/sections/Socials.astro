@@ -46,14 +46,21 @@ const SOCIAL_ICONS: Record<string, any> = {
         const Icon = SOCIAL_ICONS[network];
 
         return (
-          <a
-            href={url}
-            aria-label={`Viziteaza profilul de ${network}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Icon />
-          </a>
+<a
+  href={url}
+  aria-label={`Viziteaza profilul de ${network}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  onClick={e => {
+    e.preventDefault();
+    const win = window.open('about:blank', '_blank');
+    setTimeout(() => {
+      win.location = url;
+    }, 3000);
+  }}
+>
+  <Icon />
+</a>
         );
       })
     }

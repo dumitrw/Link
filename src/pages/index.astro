@@ -22,19 +22,21 @@ import Dith from "@/components/Dith.jsx";
       opacity={0.2}
     />
   </div> -->
-   <div class="glitch-container">
-  <Dith client:only="react" />
-  </div>
-  <SplashCursor client:only="react" />
+    <div class="splash">
+      <SplashCursor client:only="react" />
+    </div>
+    <div class="glitch-container">
+      <Dith client:only="react" />
+    </div>
+
   <main>
     <Header />
     <Socials />
      <!-- <Featured /> -->
-  
+         <Footer />
+   <Presence client:only="react"/>
   </main>
-  <Footer />
 
-<Presence client:only="react"/>
 
 <!--  <img
     src="https://lanyard.cnrad.dev/api/268156620050006017"
@@ -58,7 +60,8 @@ import Dith from "@/components/Dith.jsx";
   }
 
   .splash {
-    position: absolute;
+    position: fixed;
+    top: 0; left: 0;
     width: 30px;
     height: 30px;
     background: rgba(0, 153, 255, 0.5);
@@ -66,7 +69,7 @@ import Dith from "@/components/Dith.jsx";
     pointer-events: none;
     animation: splash-fade 0.5s ease-out;
     transform: translate(-50%, -50%);
-    z-index: -1;
+    z-index: 0;
   }
 
   @keyframes splash-fade {
@@ -85,8 +88,8 @@ import Dith from "@/components/Dith.jsx";
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 1;
-    pointer-events: visible;
+    z-index: -1;
+    pointer-events: auto;
   }
 
   .glitch-container canvas {

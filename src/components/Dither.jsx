@@ -195,15 +195,31 @@ function DitheredWaves({
   }, [size, gl]);
   
   useEffect(() => {
-  const handleVisibilityChange = () => {
-    if (document.hidden) setPaused(true);
-    else setPaused(false);
-  };
-  document.addEventListener("visibilitychange", handleVisibilityChange);
-  return () => {
-    document.removeEventListener("visibilitychange", handleVisibilityChange);
-  };
-}, []);
+    const handleVisibilityChange = () => {
+      if (document.hidden) setPaused(true);
+      else setPaused(false);
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
+  // --- MODIFICARE CHEIE: mouse-ul ascultat global ---
+  useEffect(() => {
+    if (!enableMouseInteraction) return;
+    const handlePointerMove = (e) => {
+      const rect = gl.domElement.getBoundingClientRect();
+      const dpr = gl.getPixelRatio();
+      setMousePos({
+        x: (e.clientX - rect.left) * dpr,
+        y: (e.clientY - rect.top) * dpr,
+      });
+    };
+    window.addEventListener('mousemove', handlePointerMove);
+    return () => window.removeEventListener('mousemove', handlePointerMove);
+  }, [enableMouseInteraction, gl]);
+  // --------------------------------------------------
 
   useFrame(({ clock }) => {  
     const u = waveUniformsRef.current;
@@ -217,18 +233,7 @@ function DitheredWaves({
     if (enableMouseInteraction) {
       u.mousePos.value.set(mousePos.x, mousePos.y);
     }
-  
   });
-
-  const handlePointerMove = (e) => {
-    if (!enableMouseInteraction) return;
-    const rect = gl.domElement.getBoundingClientRect();
-    const dpr = gl.getPixelRatio();
-    setMousePos({
-      x: (e.clientX - rect.left) * dpr,
-      y: (e.clientY - rect.top) * dpr,
-    });
-  };
 
   return (
     <>
@@ -244,16 +249,7 @@ function DitheredWaves({
       <EffectComposer>
         <RetroEffect colorNum={colorNum} pixelSize={pixelSize} />
       </EffectComposer>
-
-      <mesh
-        onPointerMove={handlePointerMove}
-        position={[0, 0, 0.01]}
-        scale={[viewport.width, viewport.height, 1]}
-        visible={false}
-      >
-        <planeGeometry args={[1, 1]} />
-        <meshBasicMaterial transparent opacity={0} />
-      </mesh>
+      {/* mesh invizibil eliminat! */}
     </>
   );
 }
@@ -272,9 +268,9 @@ export default function Dither({
   return (
     <Canvas
         className="dither-container"
-  camera={{ position: [0, 0, 6] }}
-  dpr={Math.min(window.devicePixelRatio, 1)} // forțează 1x dpr (evită 2x sau 3x)
-  gl={{ antialias: false, preserveDrawingBuffer: false }}
+        camera={{ position: [0, 0, 6] }}
+        dpr={Math.min(window.devicePixelRatio, 1)} // forțează 1x dpr (evită 2x sau 3x)
+        gl={{ antialias: false, preserveDrawingBuffer: false }}
     >
       <DitheredWaves
         waveSpeed={waveSpeed}
