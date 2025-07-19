@@ -15,16 +15,6 @@ const MANUAL_BADGES = [
     link: "https://discord.com/settings/hypesquad-online"
   },
   {
-    name: "Active Developer",
-    icon: "/badges/active_developer.png",
-    link: "https://support-dev.discord.com/hc/en-us/articles/10113997751447"
-  },
-  {
-    name: "Server Booster",
-    icon: "/badges/booster.png",
-    link: "https://support.discord.com/hc/en-us/articles/360028038352"
-  },
-  {
     name: "Originally known as dumitrw#7396",
     icon: "/badges/legacy_user.png",
     link: "https://discord.com/users/268156620050006017"
@@ -32,6 +22,11 @@ const MANUAL_BADGES = [
   {
     name: "Completed a Quest",
     icon: "/badges/quest_completed.png",
+    link: "https://www.youtube.com/watch?v=xvFZjo5PgG0&list=RDxvFZjo5PgG0&start_radio=1"
+  },
+  {
+    name: "Orbs",
+    icon: "/badges/orbs.png",
     link: "https://www.youtube.com/watch?v=xvFZjo5PgG0&list=RDxvFZjo5PgG0&start_radio=1"
   },
 ];
