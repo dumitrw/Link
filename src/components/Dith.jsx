@@ -6,7 +6,7 @@ function Dith() {
     waveColor={[0.5, 0.5, 0.5]}
     disableAnimation={false}
     enableMouseInteraction={true}
-    mouseRadius={0.3}
+    mouseRadius={0.35}
     colorNum={14}
     waveAmplitude={0.35}
     waveFrequency={2.5}

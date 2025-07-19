@@ -2,12 +2,13 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/sections/Header.astro";
 import Socials from "@/components/sections/Socials.astro";
-// import Featured from "@/components/sections/Featured.astro";
 import Footer from "@/components/sections/Footer.astro";
 import SplashCursor from "@/components/SplashCursor.jsx";
-// import LetterGlitch from "@/components/LetterGlitch.jsx";
 import Presence from "@/components/Presence.jsx";
 import Dith from "@/components/Dith.jsx";
+// import Featured from "@/components/sections/Featured.astro";
+// import LetterGlitch from "@/components/LetterGlitch.jsx";
+
 ---
 
 <Layout title="link-uri">
@@ -32,6 +33,7 @@ import Dith from "@/components/Dith.jsx";
   <main>
     <Header />
     <Socials />
+    
      <!-- <Featured /> -->
          <Footer />
    <Presence client:only="react"/>

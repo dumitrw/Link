@@ -19,7 +19,7 @@ import X from "@/icons/X.astro";
 import YouTube from "@/icons/YouTube.astro";
 import Steam from "@/icons/Steam.astro";
 
-const SOCIAL_ICONS: Record<string, any> = {
+const SOCIAL_ICONS = {
   Discord,
   Facebook,
   GitHub,
@@ -40,27 +40,41 @@ const SOCIAL_ICONS: Record<string, any> = {
 ---
 
 <Section>
-  <div class="container">
+  <div class="container" id="socials-container">
     {
-      socials.map(({ network, username, url }) => {
+      socials.map(({ network, username, url }, idx) => {
         const Icon = SOCIAL_ICONS[network];
-
         return (
-<a
-  href={url}
-  aria-label={`Viziteaza profilul de ${network}`}
-  target="_blank"
-  rel="noopener noreferrer"
-  onClick={e => {
-    e.preventDefault();
-    const win = window.open('about:blank', '_blank');
-    setTimeout(() => {
-      win.location = url;
-    }, 3000);
-  }}
->
-  <Icon />
-</a>
+          <a
+            href={url}
+            aria-label={`Viziteaza profilul de ${network}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+            data-idx={idx}
+          >
+            <span class="icon"><Icon /></span>
+            <span class="spinner" style="display:none;">
+              <svg class="spin" width="32" height="32" viewBox="0 0 32 32">
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="12"
+                  stroke="#464a46"
+                  stroke-width="4"
+                  fill="none"
+                  opacity="0.7"
+                />
+                <path
+                  d="M28 16a12 12 0 0 1-12 12"
+                  stroke="#000000"
+                  stroke-width="4"
+                  fill="none"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </span>
+          </a>
         );
       })
     }
@@ -74,7 +88,7 @@ const SOCIAL_ICONS: Record<string, any> = {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 0.8rem;
+    gap: 1.2rem;
     z-index: 9999;
   }
 
@@ -83,20 +97,73 @@ const SOCIAL_ICONS: Record<string, any> = {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid white;
-    padding: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.74);
+    padding: 0;
     height: 50px;
     width: 50px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
+    border-radius: 20px;
+    transition: all 0.2s ease;
     z-index: 9999;
-   
+    backdrop-filter: blur(2px);
+    background: linear-gradient(135deg, #0000004d 30%, #33333333 100%);
+    position: relative;
+    overflow: hidden;
   }
 
   .container a:hover {
-    color: black;
+    color: #000000;
     background: #fff;
     border: 1px solid #ddd;
     z-index: 9999;
+    box-shadow: 0 0 6px 2px #ffffff99;
+    transform: scale(1.08);
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+    height: 36px;
+    width: 36px;
+    font-size: 2rem;
+  }
+  .spinner {
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.37);
+    z-index: 10000;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .spin {
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin {
+    0% { transform:rotate(0deg);}
+    100% { transform:rotate(360deg);}
   }
 </style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".social-link").forEach(link => {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        const url = this.href;
+        // Afișează spinner
+        this.querySelector(".icon").style.opacity = "0.25";
+        this.querySelector(".spinner").style.display = "flex";
+        setTimeout(() => {
+          window.open(url, "_blank", "noopener,noreferrer");
+          // Revine la stilul inițial
+          this.querySelector(".icon").style.opacity = "";
+          this.querySelector(".spinner").style.display = "none";
+        }, 1000);
+      });
+    });
+  });
+</script>

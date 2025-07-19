@@ -14,27 +14,26 @@
 
 .spotify-link:hover {
   transform: translateY(-5px);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(7px);
   background: rgba(2, 41, 2, 0.1);
 }
 
 .spotify-section {
-  background: rgba(0, 0, 0, 0);
-  padding: 0.4rem;
-  border-radius: 12px;
+  background: rgba(0, 26, 6, 0.404);
+  padding: 0.1rem;
+  border-radius: 25px;
   width: 100%;
   box-sizing: border-box;
   min-height: 100px;
-    max-width: 480px;
-  backdrop-filter: blur(2px);
-  border: 2px solid rgba(4, 233, 84, 0.315);
-  box-shadow: 0 8px 32px 0 rgba(29, 185, 84, 0.404);
+  max-width: 480px;
+  border: 1px solid rgba(137, 255, 178, 0.705);
+  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.404);
   transition: all 0.3s ease;
   margin-bottom: 1.5rem;
 }
 
 .spotify-section:hover {
-  background: rgba(14, 126, 25, 0.089);
+  background: rgba(0, 26, 6, 0.658);
   transform: translateY(-2px);
   border-color: rgba(0, 255, 89, 0.4);
   box-shadow: 0 12px 32px 0 rgba(29, 185, 84, 0.3);
@@ -56,7 +55,7 @@
 .album-art {
   width: 80px;
   height: 80px;
-  border-radius: 8px;
+  border-radius: 15px;
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -103,21 +102,21 @@
 .song-title {
   font-weight: 600;
   color: #fff;
-  font-size: 1.01rem;
-  line-height: 1.17;
-  margin-bottom: 0.09rem;
+  font-size: 1.15rem;
+  line-height: 0.9;
+  margin-top: 0.3rem;
 }
 
 /* Artist */
 .song-artist {
-  margin-bottom: 0.14rem;
+  margin-bottom: 0rem;
 }
 
 /* "by" de la artist */
 .by-text {
   font-weight: 300;
   opacity: 0.8;
-  font-size: 0.92rem;
+  font-size: 0.8rem;
 }
 
 /* Bara de progres */
