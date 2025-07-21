@@ -9,14 +9,14 @@ const GlassSurface = ({
   borderWidth = 0.07,
   brightness = 50,
   opacity = 0.93,
-  blur = 11,
-  displace = 0,
+  blur = 8, // <--- REDUCE BLUR-UL AICI (era 11, încearcă 8 sau chiar 5)
+  displace = 0, // <--- SETEAZĂ ASTA LA 0
   backgroundOpacity = 0,
   saturation = 1,
-  distortionScale = -180,
-  redOffset = 0,
-  greenOffset = 10,
-  blueOffset = 20,
+  distortionScale = 0, // <--- SETEAZĂ ASTA LA 0
+  redOffset = 0,       // <--- SETEAZĂ ASTA LA 0
+  greenOffset = 0,     // <--- SETEAZĂ ASTA LA 0
+  blueOffset = 0,      // <--- SETEAZĂ ASTA LA 0
   xChannel = "R",
   yChannel = "G",
   mixBlendMode = "difference",
@@ -104,20 +104,6 @@ const GlassSurface = ({
     mixBlendMode,
   ]);
 
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    const resizeObserver = new ResizeObserver(() => {
-      setTimeout(updateDisplacementMap, 0);
-    });
-
-    resizeObserver.observe(containerRef.current);
-
-    return () => {
-      resizeObserver.disconnect();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     if (!containerRef.current) return;
