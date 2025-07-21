@@ -4,7 +4,7 @@
 
 ![Astro](https://astro.build/assets/press/astro-icon-light-gradient.svg)
 
-[![Inspired from](https://img.shields.io/badge/Available%20at-Astro%20Themes-purple?style=for-the-badge&link=https://astro.build/themes/details/astrolinkhub/)](https://astro.build/themes/details/astrolinkhub/)
+[![Inspired from]sdasdasd](https://astro.build/themes/details/astrolinkhub/)
 
 </div>
 
