@@ -1,5 +1,5 @@
 // Versiunea cache-ului - modifică la fiecare deploy pentru a forța update
-const CACHE_NAME = 'dumitrw-cache-v6.31 fixes+redesign+stremio';
+const CACHE_NAME = 'cache-v6.4 fix+redesign+stremio';
 
 // URLs care vor fi cache-uite la instalare
 const URLS_TO_CACHE = [

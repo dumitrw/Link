@@ -12,14 +12,14 @@
 
 /* Card Discord principal */
 .discord-card {
-  --status-color: rgba(116, 127, 141, 0.37);
+  --status-color: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.055);
   border-radius: 30px;
   padding: 1.1rem;
   width: 100%;
   box-sizing: border-box;
   backdrop-filter: blur(3px);
-  border: 1px solid rgba(255, 255, 255, 0.705);
+  border: 1px solid rgba(182, 182, 182, 0.575);
   box-shadow: 0 8px 32px 0 var(--status-color);
   transition: all 0.3s ease;
   margin-bottom: 0.3rem;
@@ -30,6 +30,7 @@
   backdrop-filter: blur(10px);
   transform: translateY(-5px);
   box-shadow: 0 10px 40px 0 var(--status-color);
+  border: 1px solid rgb(255, 255, 255);
   z-index: 998;
 }
 
@@ -38,8 +39,8 @@
   align-items: center;
   gap: 1rem;
   width: 100%;
-  padding: 0.5rem;
-   margin-top: 0;
+  padding: 0.1rem;
+  margin-bottom: 5;
 }
 
 .avatar {
@@ -49,12 +50,13 @@
   border: 2px solid rgba(255, 255, 255, 0.589);
   transition: transform 0.3s ease;
   box-shadow: 0 4px 12px var(--status-color);
-  margin-bottom: 0;
+  margin-bottom: 0px;
+  margin-left: 8px;
 }
 
 .avatar:hover {
   transform: scale(1.05);
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: rgb(255, 255, 255);
 }
 
 .user-section h3 {
@@ -62,13 +64,14 @@
   margin: 0;
   color: #fff;
   font-weight: 600;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.479);
 }
 
 /* Status styles */
 .status {
   font-size: 0.9rem;
-  margin-top: 0.25rem;
+  margin-top: 0.1rem;
+  margin-bottom: 0.5rem;
 }
 
 .status.online { color: #43b54c; }
@@ -152,6 +155,7 @@
   box-sizing: border-box;
   min-height: 100px;
   backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.13);
   margin-bottom: 1.5rem;
 }
@@ -163,6 +167,7 @@
 .activity-section:hover {
   background: rgba(83, 83, 83, 0.15);
   transform: translateX(5px);
+  border: 1px solid rgba(255, 255, 255, 0.904);
 }
 
 .activity-section strong {
@@ -189,33 +194,63 @@
   opacity: 0.8;
   font-size: 0.9rem;
 }
-
 /* Badge styles */
+.name-and-badges-container {
+  display: flex; /* Face ca elementele copil (h3 și discord-badges) să stea pe aceeași linie */
+  align-items: center; /* Aliniază vertical elementele la mijloc */
+  gap: 8px; /* Adaugă un spațiu între nume și badge-uri, ajustabil */
+}
 .discord-badges {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 6px;
-  margin: 1 auto;
-  margin-top: 1px;
-  background: rgba(141, 141, 141, 0.144);
-  padding: 1px 6px;
-  border-radius: 15px;
+  gap: 4px;
+  /* Atenție la 'margin: 1 auto;' - poate fi interpretat ciudat.
+     Dacă vrei 1px sus/jos și auto stânga/dreapta, scrie 'margin: 1px auto;' */
+  margin: 1px ; /* Corectat pentru claritate */
+  margin-top: 1px; /* Aceasta va suprascrie 'margin: 1px auto;' pentru partea de sus. Decide care e intenția.
+                      De obicei, doar 'margin: 1px auto;' este suficient. */
+  background: rgba(141, 141, 141, 0.315);
+  padding: 1.5px 2px;
+  border-radius: 5px;
   width: fit-content;
   min-width: 0;
   backdrop-filter: blur(10px);
   box-sizing: border-box;
 }
 
-.discord-badge {
-  width: 14px;
-  height: 14px;
-  transition: transform 0.11s;
-  vertical-align: middle;
+/* Noua clasă pentru wrapper-ul fiecărui badge (fie <a>, fie <div>) */
+/* Acesta este crucial pentru a standardiza comportamentul elementelor */
+.discord-badge-wrapper {
+  display: flex; /* Folosim flexbox pentru a centra imaginea în interior */
+  justify-content: center; /* Centrează orizontal conținutul (imaginea) */
+  align-items: center;   /* Centrează vertical conținutul (imaginea) */
+  width: 14px; /* Setează lățimea fixă a wrapper-ului */
+  height: 14px; /* Setează înălțimea fixă a wrapper-ului */
+  transition: transform 0.11s; /* Păstrează tranziția de hover */
+  /* Eliminăm stilurile implicite ale link-urilor pentru a le face să arate ca un div */
+  text-decoration: none;
+  color: inherit; /* Moștenește culoarea textului părinte */
+  margin: 0; /* Elimină orice margini implicite */
+  padding: 0; /* Elimină orice padding implicit */
+  border: none; /* Elimină orice bordură implicită */
+  outline: none; /* Elimină outline-ul la focus */
+  line-height: 1; /* Elimină spațiul suplimentar de la line-height */
+  font-size: 0; /* Asigură că nu există spațiu extra de la font-size */
 }
-.discord-badge:hover {
+
+.discord-badge-wrapper:hover {
   transform: scale(1.14);
   filter: brightness(1.13);
+}
+
+/* Stiluri pentru imaginea iconiței (acum în interiorul .discord-badge-wrapper) */
+.discord-badge-icon {
+  display: block; /* Asigură că imaginea ocupă tot spațiul wrapper-ului */
+  width: 100%; /* Imaginea va ocupa toată lățimea wrapper-ului (14px) */
+  height: 100%; /* Imaginea va ocupa toată înălțimea wrapper-ului (14px) */
+  object-fit: contain; /* Asigură că imaginea se va scala corect în wrapper */
+  vertical-align: middle; /* Aceasta nu mai este strict necesară pe img, dacă wrapper-ul este flex, dar nu strică */
 }
 
 /* Media query pentru dispozitive mobile */

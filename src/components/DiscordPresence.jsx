@@ -7,22 +7,27 @@ const MANUAL_BADGES = [
   {
     name: "HypeSquad Brilliance",
     icon: "/badges/brilliance.png",
-    link: "https://discord.com/settings/hypesquad-online"
+    lnk: "https://discord.com/settings/hypesquad-online",
+  },
+  {
+    name: "Active Developer",
+    icon: "/badges/active_developer.png",
+    link: "https://support-dev.discord.com/hc/en-us/articles/10113997751447-Active-Developer-Badge?ref=badge",
   },
   {
     name: "Originally known as dumitrw#7396",
     icon: "/badges/legacy_user.png",
-    link: "https://discord.com/users/268156620050006017"
+    link: "https://discord.com/users/268156620050006017",
   },
   {
     name: "Completed a Quest",
     icon: "/badges/quest_completed.png",
-    link: "https://www.youtube.com/watch?v=xvFZjo5PgG0&list=RDxvFZjo5PgG0&start_radio=1"
+    link: "https://www.youtube.com/watch?v=xvFZjo5PgG0&list=RDxvFZjo5PgG0&start_radio=1",
   },
   {
     name: "Orbs",
     icon: "/badges/orbs.png",
-    link: "https://www.youtube.com/watch?v=xvFZjo5PgG0&list=RDxvFZjo5PgG0&start_radio=1"
+    link: "https://www.youtube.com/watch?v=xvFZjo5PgG0&list=RDxvFZjo5PgG0&start_radio=1",
   },
 ];
 
@@ -68,19 +73,6 @@ export default function DiscordPresence() {
         if (response.ok) {
           const lanyardData = await response.json();
           setData(lanyardData);
-
-          if (lanyardData.data.discord_status) {
-            const status = lanyardData.data.discord_status;
-            const statusConfig = statusColors[status];
-            const card = document.querySelector('.discord-card');
-            if (card && statusConfig) {
-              card.style.setProperty('--status-color', statusConfig.shadow);
-              const event = new CustomEvent('discord-status-change', {
-                detail: { colors: statusConfig.glitchColors }
-              });
-              window.dispatchEvent(event);
-            }
-          }
         } else {
           setError(`Failed to fetch: ${response.status}`);
         }
@@ -131,7 +123,7 @@ export default function DiscordPresence() {
     };
   }, [data]); // Rulăm acest efect ori de câte ori datele Lanyard se actualizează
 
-  if (loading) return <div>Loading Discord presence...</div>;
+  if (loading) return <div>Loading DiscordPresence.jsx ...</div>;
   if (error) return <div>Error: {error}</div>;
   if (!data?.success) return <div>No presence data available</div>;
 
@@ -147,32 +139,46 @@ export default function DiscordPresence() {
             />
           </a>
           <div>
+            <div className="name-and-badges-container">
             <h3>
               {data.data.discord_user.username || data.data.discord_user.global_name}
-              <span className="guild-tag">&#60;3</span>
+              {/* <span className="guild-tag">&#60;3</span> */}
             </h3>
-            <div className="discord-badges">
-              {MANUAL_BADGES.map(badge => (
-                badge.link ? (
-                  <a key={badge.name} href={badge.link} target="_blank" rel="noopener noreferrer">
-                    <img
-                      src={badge.icon}
-                      alt={badge.name}
-                      title={badge.name}
-                      className="discord-badge"
-                    />
-                  </a>
-                ) : (
-                  <img
-                    key={badge.name}
-                    src={badge.icon}
-                    alt={badge.name}
-                    title={badge.name}
-                    className="discord-badge"
-                  />
-                )
-              ))}
-            </div>
+              <div className="discord-badges">
+               {MANUAL_BADGES.map(badge => (
+               badge.link ? (
+      // Folosește <a> atunci când există un link
+      <a
+        key={badge.name}
+        href={badge.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="discord-badge-wrapper" // Aici folosim noua clasă
+      >
+        <img
+          src={badge.icon}
+          alt={badge.name}
+          title={badge.name}
+          className="discord-badge-icon" // Aici folosim clasa pentru img
+        />
+      </a>
+    ) : (
+      // Folosește un <div> ca wrapper când nu există link, pentru consistență structurală
+      <div
+        key={badge.name}
+        className="discord-badge-wrapper" // Aici folosim noua clasă
+      >
+        <img
+          src={badge.icon}
+          alt={badge.name}
+          title={badge.name}
+          className="discord-badge-icon" // Aici folosim clasa pentru img
+        />
+      </div>
+    )
+  ))}
+</div> 
+</div>
             <p className={`status ${data.data.discord_status}`}>
               {data.data.discord_status}
             </p>

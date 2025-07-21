@@ -4,7 +4,7 @@
   display: block;
   cursor: pointer;
   background: rgba(2, 41, 2, 0.048);
-  border-radius: 15px;
+  border-radius: 25px;
   backdrop-filter: blur(2px);
   margin-bottom: 0.5rem;
   position: relative;
@@ -16,18 +16,19 @@
   transform: translateY(-5px);
   backdrop-filter: blur(7px);
   background: rgba(2, 41, 2, 0.1);
+    border-radius: 25px;
 }
 
 .spotify-section {
   background: rgba(0, 26, 6, 0.404);
-  padding: 0.1rem;
+  padding: 0rem;
   border-radius: 25px;
   width: 100%;
   box-sizing: border-box;
   min-height: 100px;
   max-width: 480px;
-  border: 1px solid rgba(137, 255, 178, 0.705);
-  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.404);
+  border: 1px solid rgba(8, 228, 89, 0.705);
+  box-shadow: 0 4px 19px 0 rgba(0, 216, 29, 0.514);
   transition: all 0.3s ease;
   margin-bottom: 1.5rem;
 }
@@ -35,8 +36,8 @@
 .spotify-section:hover {
   background: rgba(0, 26, 6, 0.658);
   transform: translateY(-2px);
-  border-color: rgba(0, 255, 89, 0.4);
-  box-shadow: 0 12px 32px 0 rgba(29, 185, 84, 0.3);
+  border: 1px solid rgba(1, 255, 94, 0.932);
+  box-shadow: 0 6px 32px 0 rgba(29, 185, 84, 0.911);
 }
 
 .spotify-section:last-child {
