@@ -30,30 +30,6 @@ const MANUAL_BADGES = [
     link: "https://www.youtube.com/watch?v=xvFZjo5PgG0&list=RDxvFZjo5PgG0&start_radio=1",
   },
 ];
-
-const statusColors = {
-  online: {
-    main: '#43B54C',
-    shadow: 'rgba(67, 181, 76, 0.37)',
-    glitchColors: ['#43B54C', '#2b4539', '#61dca3']
-  },
-  idle: {
-    main: '#FAA61A',
-    shadow: 'rgba(250, 166, 26, 0.37)',
-    glitchColors: ['#FAA61A', '#8B6914', '#FFD700']
-  },
-  dnd: {
-    main: '#E02C2C',
-    shadow: 'rgba(224, 44, 44, 0.37)',
-    glitchColors: ['#E02C2C', '#8B0000', '#FF4500']
-  },
-  offline: {
-    main: '#747F8D',
-    shadow: 'rgba(116, 127, 141, 0.37)',
-    glitchColors: ['#747F8D', '#36393F', '#4F545C']
-  }
-};
-
 const formatTime = (ms) => {
   const minutes = Math.floor(ms / 60000);
   const seconds = Math.floor((ms / 1000) % 60);
