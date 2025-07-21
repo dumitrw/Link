@@ -4,6 +4,9 @@
 
 ![Astro](https://astro.build/assets/press/astro-icon-light-gradient.svg)
 </div>
+<div align="center">
+
+</div>
 
 <h1 align="center">Based on AstroLinkHub</h1>
 
