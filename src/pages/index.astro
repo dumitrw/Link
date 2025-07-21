@@ -3,39 +3,30 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/sections/Header.astro";
 import Socials from "@/components/sections/Socials.astro";
 import Footer from "@/components/sections/Footer.astro";
-import SplashCursor from "@/components/SplashCursor.jsx";
-import Presence from "@/components/Presence.jsx";
-import Dith from "@/components/Dith.jsx";
+import SplashCursor from "@/components/scripts/SplashCursor.jsx";
+import Presence from "@/components/presence/Presence.jsx";
+import Dith from "@/components/background/Dith.jsx";
+
 // import Featured from "@/components/sections/Featured.astro";
-// import LetterGlitch from "@/components/LetterGlitch.jsx";
 
 ---
 
 <Layout title="link-uri">
-  <!-- <div class="glitch-container"> 
-    <LetterGlitch
-      client:only="react"
-      glitchColors={["#747F8D", "#36393F", "#4F545C"]}
-      glitchSpeed={100}
-      centerVignette={false}
-      outerVignette={true}
-      smooth={true}
-      opacity={0.2}
-    />
-  </div> -->
     <div class="splash">
       <SplashCursor client:only="react" />
     </div>
-    <div class="glitch-container">
+    <div class="ditherfix">
       <Dith client:only="react" />
     </div>
 
   <main>
     <Header />
+
     <Socials />
     <!-- <Featured /> -->
     <Footer />
     <Presence client:only="react"/>
+
   </main>
 
 
@@ -80,7 +71,7 @@ import Dith from "@/components/Dith.jsx";
       transform: scale(2);
     }
   }
-  .glitch-container {
+  .ditherfix {
     position: fixed;
     top: 0;
     left: 0;
@@ -90,7 +81,7 @@ import Dith from "@/components/Dith.jsx";
     pointer-events: auto;
   }
 
-  .glitch-container canvas {
+  .ditherfix canvas {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover;

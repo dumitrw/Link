@@ -5,7 +5,7 @@ import { EffectComposer, wrapEffect } from "@react-three/postprocessing";
 import { Effect } from "postprocessing";
 import * as THREE from "three";
 
-import './plm.css';
+import '../css/plm.css';
 
 const waveVertexShader = `
 precision highp float;

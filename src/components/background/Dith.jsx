@@ -1,4 +1,4 @@
-import Dither from './Dither';
+import Dither from './Dither.jsx';
 
 function Dith() {
   return (

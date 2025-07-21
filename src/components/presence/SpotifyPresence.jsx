@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './SpotifyPresence.css';
+import '../css/SpotifyPresence.css';
 
 const DISCORD_ID = '268156620050006017';
 
