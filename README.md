@@ -8,7 +8,7 @@
 
 </div>
 
-<h1 align="center">Based on AstroLinkHub</h1>
+<h1 align="center">Based on <a href="https://astro.build/themes/details/astrolinkhub/">AstroLinkHub</a></h1>
 
 <div align="center">
 
