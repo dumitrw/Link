@@ -10,5 +10,3 @@
 <div align="center">
 
 </div>
-
-<p align="right"><a href="#readme-top">Back to top ⬆️</a></p>
