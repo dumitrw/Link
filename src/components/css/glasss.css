@@ -46,7 +46,7 @@
 }
 
 .glass-surface--svg {
-  background: light-dark(hsl(0 0% 100% / var(--glass-frost, 0)),
+  background: light-dark(hsl(0 20% 100% / var(--glass-frost, 0)),
       hsl(0 0% 0% / var(--glass-frost, 0)));
   backdrop-filter: var(--filter-id, url(#glass-filter)) saturate(var(--glass-saturation, 1));
   box-shadow:
