@@ -194,16 +194,7 @@ function DitheredWaves({
     }
   }, [size, gl]);
   
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.hidden) setPaused(true);
-      else setPaused(false);
-    };
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
-  }, []);
+
 
   // --- MODIFICARE CHEIE: mouse-ul ascultat global ---
   useEffect(() => {

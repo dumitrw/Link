@@ -1,5 +1,5 @@
 // Versiunea cache-ului - modifică la fiecare deploy pentru a forța update
-const CACHE_NAME = 'cache-v7.06 (play/pause,ciuperci, design fixes';
+const CACHE_NAME = 'cache-v7.07 (play/pause,ciuperci, design fixes';
 
 // URLs care vor fi cache-uite la instalare
 const URLS_TO_CACHE = [
