@@ -24,18 +24,20 @@ function SplashCursor({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    function pointerPrototype() {
-      this.id = -1;
-      this.texcoordX = 0;
-      this.texcoordY = 0;
-      this.prevTexcoordX = 0;
-      this.prevTexcoordY = 0;
-      this.deltaX = 0;
-      this.deltaY = 0;
-      this.down = false;
-      this.moved = false;
-      this.color = [0, 0, 0];
-    }
+class Pointer { // <<< Aceasta trebuie să fie o clasă, nu o funcție
+  constructor() {
+    this.id = -1;
+    this.texcoordX = 0;
+    this.texcoordY = 0;
+    this.prevTexcoordX = 0;
+    this.prevTexcoordY = 0;
+    this.deltaX = 0;
+    this.deltaY = 0;
+    this.down = false;
+    this.moved = false;
+    this.color = [0, 0, 0]; // Initialize color
+  }
+}
 
     let config = {
       SIM_RESOLUTION,
@@ -55,7 +57,11 @@ function SplashCursor({
       TRANSPARENT,
     };
 
-    let pointers = [new pointerPrototype()];
+   let pointers = [];
+const defaultPointer = new Pointer(); // <<< Asigură-te că folosești "new Pointer()"
+defaultPointer.id = 0;
+defaultPointer.down = true;
+pointers.push(defaultPointer);
 
     const { gl, ext } = getWebGLContext(canvas);
     if (!ext.supportLinearFiltering) {
