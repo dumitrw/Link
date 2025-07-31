@@ -1,6 +1,6 @@
 // src/components/scripts/SplashCursorWrapper.jsx
 'use client';
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 import SplashCursor from './SplashCursor.jsx'; // Asigură-te că calea este corectă
 
 const SplashCursorWrapper = () => {
