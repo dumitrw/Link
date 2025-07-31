@@ -1,5 +1,5 @@
 // Versiunea cache-ului - modifică la fiecare deploy pentru a forța update
-const CACHE_NAME = 'cache-v7.09';
+const CACHE_NAME = 'cache-v7.1';
 
 // URLs care vor fi cache-uite la instalare
 const URLS_TO_CACHE = [
