@@ -69,7 +69,7 @@ const { firstColor } = background;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10005; /* Asigură-te că este deasupra tuturor celorlalte elemente */
+    z-index: 10005; 
     transition: opacity 1.5s ease-in; /* Tranziție pentru fade-out */
   }
 
@@ -114,15 +114,11 @@ const { firstColor } = background;
     
   }
 
-  *,\
- *::before,\
-  *::after {
-    box-sizing: border-box;
-    
-  }
-  h1,\
-  h2,\
-  h3,\
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
   h4 {
     margin: 0;
   }

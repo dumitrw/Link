@@ -69,7 +69,7 @@ const DitherToggleButton = () => {
         right: '5px',
         zIndex: '9998',
         width: '45px', // Păstrăm lățimea pentru zona de click și centrarea SVG-ului
-        height: '45px', // Păstrăm înălțimea pentru zona de click și centrarea SVG-ului
+        height: '45px', 
         border: 'none', // Fără margine vizibilă
         background: 'transparent', // Fundal complet transparent
         color: 'white', // Asigură că SVG-ul cu "currentColor" va fi alb

@@ -1,5 +1,5 @@
 // Versiunea cache-ului - modifică la fiecare deploy pentru a forța update
-const CACHE_NAME = 'cache-v7.08';
+const CACHE_NAME = 'cache-v7.09';
 
 // URLs care vor fi cache-uite la instalare
 const URLS_TO_CACHE = [
@@ -68,8 +68,6 @@ self.addEventListener('fetch', event => {
             if (!response || response.status !== 200 || response.type !== 'basic') {
               return response;
             }
-
-            // Clone the response because it's a stream and can only be consumed once
             const responseToCache = response.clone();
 
             caches.open(CACHE_NAME)
