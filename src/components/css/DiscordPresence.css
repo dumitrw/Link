@@ -20,7 +20,7 @@
   width: 100%;
   box-sizing: border-box;
   backdrop-filter: blur(3px);
-  border: 1px solid rgba(182, 182, 182, 0.575);
+  border: 1.5px solid rgba(182, 182, 182, 0.575);
   box-shadow: 0 8px 32px 0 var(--status-color);
   transition: all 0.3s ease;
   margin-bottom: 0.3rem;
@@ -35,32 +35,93 @@
   border: 1px solid rgb(255, 255, 255);
   z-index: 998;
 }
-
 .user-section {
   display: flex;
-  align-items: center;
+  align-items: center; /* Aliniază elementele la mijloc pe verticală */
   gap: 1rem;
   width: 100%;
   padding: 0.1rem;
-  margin-bottom: 5;
+  margin-bottom: 5px; /* Spațiu sub secțiunea userului */
+}
+
+/* NOU: Wrapper pentru avatar și bulina de status */
+.avatar-wrapper {
+  position: relative; /* Esențial pentru poziționarea bulinei */
+  width: 85px; /* La fel ca lățimea avatarului */
+  height: 85px;
+  margin-bottom: 4px; /* La fel ca înălțimea avatarului */
+  margin-left: 10px; /* Păstrează marginea de la avatar */
 }
 
 .avatar {
-  width: 85px;
-  height: 85px;
+  width: 100%; /* Ocupă 100% din wrapper */
+  height: 100%; /* Ocupă 100% din wrapper */
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.589);
+  border: 2.5px solid rgba(255, 255, 255, 0.589);
   transition: transform 0.3s ease;
   box-shadow: 0 4px 12px var(--status-color);
-  margin-bottom: 0px;
-  margin-left: 8px;
+
+  /* Eliminăm margin-bottom direct de pe avatar, acum e pe user-section */
 }
 
 .avatar:hover {
   transform: scale(1.05);
   border-color: rgb(255, 255, 255);
-
 }
+
+/* NOU: Stil pentru bulina de status */
+.status-dot {
+  position: absolute;
+  bottom: 3px; /* Poziționat în colțul de jos al wrapper-ului */
+  right: 3px; /* Poziționat în colțul din dreapta al wrapper-ului */
+  width: 20px; /* Mărimea bulinei */
+  height: 20px; /* Mărimea bulinei */
+  border-radius: 50%; /* O face rotundă */
+  border: 3px solid rgba(0, 0, 0, 0.6); /* Bordura neagră din jurul bulinei */
+  box-sizing: border-box; /* Include borderul în lățime/înălțime */
+  z-index: 10; /* Asigură că stă deasupra avatarului */
+}
+/* Culorile specifice pentru fiecare status, acum aplicate pe .avatar-wrapper .status-dot */
+.avatar-wrapper.online .status-dot {
+  background-color: #43b581; /* Verde Discord */
+}
+
+.avatar-wrapper.idle .status-dot {
+  background-color: #faa61a; /* Portocaliu Discord */
+  /* Adaugă stiluri pentru ochiul de lună pe idle, dacă vrei */
+  /* background-image: url('/path/to/idle-moon-icon.svg'); */
+  /* background-size: cover; */
+  /* background-repeat: no-repeat; */
+}
+
+.avatar-wrapper.dnd .status-dot {
+  background-color: #f04747; /* Roșu Discord */
+}
+
+.avatar-wrapper.offline .status-dot {
+  background-color: #747f8d; /* Gri Discord */
+}
+
+
+/* NOU: Stil pentru textul statusului (fără bulină, care e acum pe avatar) */
+.status-text-only {
+  font-size: 0.875rem; /* Mărimea textului statusului */
+  color: #a0aec0; /* Culoarea textului statusului */
+  display: flex; /* Folosim flexbox pentru a alinia textul și Custom Status-ul */
+  flex-wrap: wrap; /* Permite Custom Status-ului să treacă pe rândul următor */
+  align-items: baseline; /* Aliniază textul la linia de bază */
+  line-height: 1.2; /* Ajustează line-height */
+  margin: 0; /* Elimină marginile implicite */
+  padding: 0; /* Elimină padding-ul implicite */
+}
+
+
+
+/* Stilurile de culoare pe care le ai deja pentru textul statusului - pot rămâne, dar sunt mai puțin relevante acum */
+.status-text-only.online { color: #43b54c; }
+.status-text-only.idle { color: #faa81a; }
+.status-text-only.dnd { color: #e02c2c; }
+.status-text-only.offline { color: #747F8D; }
 
 .user-section h3 {
   font-size: 1.4rem;
@@ -70,11 +131,17 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.479);
 }
 
-/* Status styles */
-.status {
-  font-size: 0.9rem;
-  margin-top: 0.1rem;
-  margin-bottom: 0.5rem;
+
+
+/* DiscordPresence.css */
+
+.custom-status-text {
+  display: block !important; /* Force new line */
+  font-size: 0.75rem !important;
+  color: #9ca3af !important;
+  margin-top: 2px !important;
+  width: 100% !important;
+    line-height: 1.2;
 }
 
 .status.online { color: #43b54c; }
