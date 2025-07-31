@@ -1,6 +1,6 @@
 // src/components/scripts/DitherToggleButton.jsx
 'use client'; // Important pentru React Hooks în Astro
-
+import  { useState, useEffect } from 'react';
 
 const DitherToggleButton = () => {
   // Starea butonului: true = animația este activată (Play), false = animația este dezactivată (Pause)

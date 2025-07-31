@@ -1,6 +1,6 @@
 // src/components/background/DitherBackground.jsx
 'use client';
-
+import  { useState, useEffect } from 'react';
 import Dither from './Dither.jsx'; // <<< Make sure this import is correct and Dith.jsx exists
 
 function DitherBackground() {

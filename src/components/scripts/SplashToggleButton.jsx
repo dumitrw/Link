@@ -1,6 +1,6 @@
 // src/components/scripts/SplashToggleButton.jsx
 'use client'; // Necesare pentru Hooks și interacțiunea cu DOM-ul browserului
-// import React, { useState, useEffect } from 'react';
+import{ useState, useEffect } from 'react';
 
 const SplashToggleButton = () => {
   const [isEnabled, setIsEnabled] = useState(() => {
