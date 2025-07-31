@@ -2,7 +2,7 @@
   "name": "eu.dumitrw.ro",
   "short_name": "dima",
   "type": "module",
-  "version": "7.0.9",
+  "version": "7.1.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
