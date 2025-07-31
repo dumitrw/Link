@@ -3,38 +3,29 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/sections/Header.astro";
 import Socials from "@/components/sections/Socials.astro";
 import Footer from "@/components/sections/Footer.astro";
-import SplashCursor from "@/components/scripts/SplashCursor.jsx";
 import Presence from "@/components/presence/Presence.jsx";
-import Dith from "@/components/background/Dith.jsx";
-
+import DitherBackground from "@/components/background/DitherBackground.jsx";
+import DitherToggleButton from "@/components/background/DitherToggleButton.jsx";
+import SplashToggleButton from '../components/scripts/SplashToggleButton.jsx';
+import SplashCursorWrapper from "@/components/scripts/SplashCursorWrapper.jsx";
 // import Featured from "@/components/sections/Featured.astro";
 
 ---
 
 <Layout title="link-uri">
-    <div class="splash">
-      <SplashCursor client:only="react" />
-    </div>
+   <SplashCursorWrapper client:only="react" />
     <div class="ditherfix">
-      <Dith client:only="react" />
+      <DitherBackground client:only="react" />
     </div>
-
   <main>
     <Header />
-
     <Socials />
     <!-- <Featured /> -->
     <Footer />
     <Presence client:only="react"/>
-
+    <DitherToggleButton client:only="react"/>
+    <SplashToggleButton client:load/>
   </main>
-
-
-<!--  <img
-    src="https://lanyard.cnrad.dev/api/268156620050006017"
-    alt="status"
-    class="responsive-image"
-  /> -->
 </Layout>
 
 <style>
@@ -51,26 +42,6 @@ import Dith from "@/components/background/Dith.jsx";
     }
   }
 
-  .splash {
-    position: fixed;
-    top: 0; left: 0;
-    border-radius: 50%;
-    pointer-events: auto;
-    animation: splash-fade 0.5s ease-out;
-    transform: translate(-50%, -50%);
-    z-index: 0;
-  }
-
-  @keyframes splash-fade {
-    from {
-      opacity: 1;
-      transform: scale(1);
-    }
-    to {
-      opacity: 0;
-      transform: scale(2);
-    }
-  }
   .ditherfix {
     position: fixed;
     top: 0;

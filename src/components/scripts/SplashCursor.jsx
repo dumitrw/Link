@@ -3,19 +3,19 @@ import { useEffect, useRef } from 'react';
 
 function SplashCursor({
   // You can customize these props if you want
-  SIM_RESOLUTION = 128,
+  SIM_RESOLUTION = 84,
   DYE_RESOLUTION = 1440,
   CAPTURE_RESOLUTION = 512,
-  DENSITY_DISSIPATION = 3.5,
-  VELOCITY_DISSIPATION = 2,
-  PRESSURE = 0.1,
+  DENSITY_DISSIPATION = 2,
+  VELOCITY_DISSIPATION = 3,
+  PRESSURE = 0.2,
   PRESSURE_ITERATIONS = 20,
-  CURL = 3,
-  SPLAT_RADIUS = 0.2,
-  SPLAT_FORCE = 6000,
+  CURL = 15,
+  SPLAT_RADIUS = 0.3,
+  SPLAT_FORCE = 9000,
   SHADING = true,
   COLOR_UPDATE_SPEED = 10,
-  BACK_COLOR = { r: 0.5, g: 0, b: 0 },
+  BACK_COLOR = { r: 1, g: 0.5, b: 0.5 },
   TRANSPARENT = true
 }) {
   const canvasRef = useRef(null);
@@ -50,7 +50,7 @@ function SplashCursor({
       SPLAT_FORCE,
       SHADING,
       COLOR_UPDATE_SPEED,
-      PAUSED: false,
+      PAUSED: false, // PAUSED state, managed by the button
       BACK_COLOR,
       TRANSPARENT,
     };
@@ -752,15 +752,23 @@ function SplashCursor({
     initFramebuffers();
     let lastUpdateTime = Date.now();
     let colorUpdateTimer = 0.0;
+    let animationFrameId = null; // New variable to manage animation frame ID
 
     function updateFrame() {
+      // If paused, just return and don't request next frame
+      if (config.PAUSED) {
+        animationFrameId = null; // Ensure ID is null if paused
+        return;
+      }
+
       const dt = calcDeltaTime();
       if (resizeCanvas()) initFramebuffers();
       updateColors(dt);
       applyInputs();
       step(dt);
       render(null);
-      requestAnimationFrame(updateFrame);
+
+      animationFrameId = requestAnimationFrame(updateFrame); // Request next frame only if not paused
     }
 
     function calcDeltaTime() {
@@ -1099,6 +1107,28 @@ function SplashCursor({
       return hash;
     }
 
+    // --- Start Event Listeners and Animation Control ---
+
+    // Handler for the custom toggle event
+    const handleToggleSplash = (event) => {
+      const enableSplash = event.detail; // true if ON, false if OFF
+      config.PAUSED = !enableSplash; // If enableSplash is true, PAUSED should be false, and vice versa
+
+      if (!config.PAUSED && animationFrameId === null) {
+        // If we are unpausing AND the animation is currently stopped, start it
+        lastUpdateTime = Date.now(); // Reset timer to prevent large dt on resume
+        animationFrameId = requestAnimationFrame(updateFrame);
+      } else if (config.PAUSED && animationFrameId !== null) {
+        // If we are explicitly pausing and animation is running, cancel it
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+    };
+
+    // Add the custom event listener
+    window.addEventListener('cursorSplashToggle', handleToggleSplash);
+
+    // Mouse and Touch Event Listeners (Existing)
     window.addEventListener('mousedown', (e) => {
       let pointer = pointers[0];
       let posX = scaleByPixelRatio(e.clientX);
@@ -1112,7 +1142,10 @@ function SplashCursor({
       let posX = scaleByPixelRatio(e.clientX);
       let posY = scaleByPixelRatio(e.clientY);
       let color = generateColor();
-      updateFrame(); // start animation loop
+      // Only start animation loop if not paused
+      if (!config.PAUSED && animationFrameId === null) {
+        animationFrameId = requestAnimationFrame(updateFrame);
+      }
       updatePointerMoveData(pointer, posX, posY, color);
       document.body.removeEventListener('mousemove', handleFirstMouseMove);
     });
@@ -1131,7 +1164,10 @@ function SplashCursor({
       for (let i = 0; i < touches.length; i++) {
         let posX = scaleByPixelRatio(touches[i].clientX);
         let posY = scaleByPixelRatio(touches[i].clientY);
-        updateFrame(); // start animation loop
+        // Only start animation loop if not paused
+        if (!config.PAUSED && animationFrameId === null) {
+          animationFrameId = requestAnimationFrame(updateFrame);
+        }
         updatePointerDownData(pointer, touches[i].identifier, posX, posY);
       }
       document.body.removeEventListener('touchstart', handleFirstTouchStart);
@@ -1169,7 +1205,19 @@ function SplashCursor({
       }
     });
 
-    updateFrame();
+    // Initial start of the animation loop if not paused by default
+    if (!config.PAUSED) {
+      animationFrameId = requestAnimationFrame(updateFrame);
+    }
+
+    // Cleanup function: remove event listener and cancel animation frame
+    return () => {
+      window.removeEventListener('cursorSplashToggle', handleToggleSplash);
+      if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     SIM_RESOLUTION,

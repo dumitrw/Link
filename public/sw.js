@@ -1,5 +1,5 @@
 // Versiunea cache-ului - modifică la fiecare deploy pentru a forța update
-const CACHE_NAME = '(cache-v6.5 fix+redesign+stremio+ass) v6.4 rollback';
+const CACHE_NAME = 'cache-v7.01 (play/pause,🍄, design fixes';
 
 // URLs care vor fi cache-uite la instalare
 const URLS_TO_CACHE = [

@@ -14,9 +14,7 @@ const { firstColor, secondColor } = background;
     <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="theme-color" content={firstColor} />
     <title>{title}</title>
-  <!-- Link către manifest -->
   <link rel="manifest" href="/manifest.json" />
-  <!-- Alte taguri deja existente aici... -->
   </head>
   <body>
          <script>
@@ -30,25 +28,65 @@ const { firstColor, secondColor } = background;
       <img id="logo" src="/logo.png" alt="Logo" />
     </div>
     <slot />
-    <script>
+ <script>
       document.addEventListener("DOMContentLoaded", () => {
         const overlay = document.getElementById("overlay");
         if (overlay) {
           overlay.addEventListener("animationend", () => {
-            overlay.remove(); // Eliminăm overlay-ul complet din DOM
-            document.body.style.overflow = "auto"; // Activăm scroll-ul
+            overlay.style.display = "none"; // Ascunde complet după animație
           });
+          overlay.classList.add("fade-out"); // Adaugă clasa pentru a declanșa animația
         }
       });
     </script>
   </body>
 </html>
-<style is:global define:vars={{ firstColor, secondColor }}>
-  @import url("https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap");
 
-  html {
-    font-family: "Onest", sans-serif;
+<style is:global>
+  /* Stiluri globale existente */
+  /* @font-face {
+    font-family: "Onest";
+    src: url("/fonts/Onest-Regular.ttf") format("truetype");
+  } */
+  /* NOU: Declarația pentru fontul TwCen.ttf */
+  @font-face {
+    font-family: "TwCen"; /* Numele pe care îl vei folosi în CSS */
+    src: url("/TwCen.ttf") format("truetype"); /* Calea către fișierul tău .ttf */
+    font-weight: normal; /* Poți specifica greutatea (ex: 400, bold, etc.) */
+    font-style: normal; /* Poți specifica stilul (normal, italic) */
   }
+
+
+
+ /* Stiluri pentru Overlay și Logo - ASIGURĂ-TE CĂ ACESTEA SUNT PREZENTE ȘI CORECTE */
+  #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black; /* Sau culoarea de fundal dorită */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10005; /* Asigură-te că este deasupra tuturor celorlalte elemente */
+    transition: opacity 1.5s ease-in; /* Tranziție pentru fade-out */
+  }
+
+  #overlay.fade-out {
+    opacity: 0;
+    pointer-events: none; /* Blochează interacțiunile după fade-out */
+  }
+
+  #logo {
+    max-width: 15vw; /* Limitează lățimea logo-ului la 80% din viewport */
+    max-height: 15vh; /* Limitează înălțimea logo-ului la 80% din viewport */
+    width: auto;
+    height: auto;
+    object-fit: contain; /* Asigură că imaginea se scalează proporțional */
+  }
+
+
   body {
     cursor: url('/Kitty.cur'), auto;
     overflow: hidden; /* Overflow ascuns inițial */
@@ -75,56 +113,55 @@ const { firstColor, secondColor } = background;
     padding: 0;
     
   }
-  *,
-  *::before,
+
+  *,\
+ *::before,\
   *::after {
     box-sizing: border-box;
     
   }
-  h1,
-  h2,
-  h3,
+  h1,\
+  h2,\
+  h3,\
   h4 {
     margin: 0;
   }
-  p {
-    color: #888;
-    font-size: 0.8rem;
-    line-height: 1.5;
-    margin: 0;
-  }
+
   @media only screen and (max-width: 768px) {
     body {
       width: 80%;
     }
+    .splash-easter-egg-button {
+      display: none !important; /* Adăugați !important pentru a forța ascunderea */
+    }
   }
-  #overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: black;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: fadeOut 3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-    animation-delay: 1s;
-    pointer-events: none; /* Dezactivează interacțiunea în timpul fade-out */
+
+  /*
+  ********************************************
+  * Noi stiluri pentru Butonul Easter Egg  *
+  ********************************************
+  */
+/* Keyframes pentru rotația de hue */
+  @keyframes seamlessHueRotate {
+    from { filter: hue-rotate(0deg); }
+    to { filter: hue-rotate(360deg); } /* Rotație completă și fluidă */
   }
-  #logo {
-    width: 100px;
-    opacity: 0;
-    animation: blink 2s ease-in-out 2.5;
-    animation-delay: 0.5s;
+
+  /* Keyframes pentru pulsarea umbrei (strălucirea) */
+  @keyframes buttonGlowPulse {
+    0% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 255, 255, 0.3); } /* Umbră normală + strălucire subtilă */
+    50% { box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 255, 255, 0.8); } /* Umbră mai pronunțată + strălucire mai intensă */
+    100% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 255, 255, 0.3); }
   }
-  @keyframes fadeOut {
-    0% { opacity: 1; }
-    100% { opacity: 0; }
-  }
-  @keyframes blink {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
+
+  /* Stil pentru butonul easter egg */
+  .splash-easter-egg-button {
+    /* Asigură că stilurile din JS (poziție, dimensiune, border-radius, border, background, backdrop-filter, etc.) sunt aplicate */
+    /* Aici aplicăm doar animațiile */
+    animation: seamlessHueRotate 10s linear infinite, /* Animația de hue-rotate */
+               buttonGlowPulse 3s ease-in-out infinite alternate; /* Animația de glow */
+    /* Propune un z-index pentru buton dacă ai probleme cu altele elemente */
+    /* z-index: 111111; */ /* deja e in stilul inline */
+
   }
 </style>

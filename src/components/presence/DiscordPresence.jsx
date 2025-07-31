@@ -111,6 +111,7 @@ export default function DiscordPresence() {
             <img
               src={`https://cdn.discordapp.com/avatars/${DISCORD_ID}/${data.data.discord_user.avatar}.png?size=128`}
               alt="Discord avatar"
+              title="Viziteaza profil Discord"
               className="avatar"
             />
           </a>
