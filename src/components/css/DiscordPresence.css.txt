@@ -13,24 +13,13 @@
 /* Card Discord principal */
 .discord-card {
   --status-color: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.055);
   border-radius: 30px;
-  padding: 1.1rem;
+  padding: 0rem;
   width: 100%;
   box-sizing: border-box;
-  backdrop-filter: blur(3px);
-  border: 1px solid rgba(182, 182, 182, 0.575);
-  box-shadow: 0 8px 32px 0 var(--status-color);
+
   transition: all 0.3s ease;
   margin-bottom: 0.3rem;
-  z-index: 998;
-}
-
-.discord-card:hover {
-  backdrop-filter: blur(10px);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 40px 0 var(--status-color);
-  border: 1px solid rgb(255, 255, 255);
   z-index: 998;
 }
 
@@ -154,7 +143,7 @@
   width: 100%;
   box-sizing: border-box;
   min-height: 100px;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(0px);
   transition: all 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.13);
   margin-bottom: 1.5rem;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import '../css/DiscordPresence.css'; // Acest fișier CSS va conține acum doar stilurile pentru Discord și Stremio
+import GlassSurface from "@/components/scripts/glasss.jsx";
 
 const DISCORD_ID = '268156620050006017';
 
@@ -104,8 +105,35 @@ export default function DiscordPresence() {
   if (!data?.success) return <div>No presence data available</div>;
 
   return (
-    <div className="presence-wrapper">
-      <div className="discord-card">
+//      <GlassSurface
+//    width={400} 
+//   height={500}
+//   borderRadius={24}
+  // displace={15}
+  // distortionScale={-150}
+  // redOffset={5}
+  // greenOffset={15}
+  // blueOffset={25}
+  // brightness={60}
+  // opacity={0.8}
+  // mixBlendMode="screen"
+//   className="glass-surface"
+// >
+<div   className="presence-wrapper">
+      <GlassSurface client:only="react"
+            width="100%" // <-- Setează lățimea la 100% din părintele său
+      height="100%"
+  borderRadius={30}
+   displace={4}
+  distortionScale={-150}
+  redOffset={5}
+  greenOffset={15}
+  blueOffset={25}
+  brightness={60}
+  opacity={0.8}
+  mixBlendMode="screen"
+  className="glass-card-background">
+    <div className="discord-card">
         <div className="user-section">
           <a href={`https://discord.com/users/${DISCORD_ID}`} target="_blank" rel="noopener noreferrer">
             <img
@@ -123,21 +151,21 @@ export default function DiscordPresence() {
               <div className="discord-badges">
                {MANUAL_BADGES.map(badge => (
                badge.link ? (
-      // Folosește <a> atunci când există un link
-      <a
+                // Folosește <a> atunci când există un link
+               <a
         key={badge.name}
         href={badge.link}
         target="_blank"
         rel="noopener noreferrer"
         className="discord-badge-wrapper" // Aici folosim noua clasă
       >
-        <img
+               <img
           src={badge.icon}
           alt={badge.name}
           title={badge.name}
           className="discord-badge-icon" // Aici folosim clasa pentru img
         />
-      </a>
+                </a>
     ) : (
       // Folosește un <div> ca wrapper când nu există link, pentru consistență structurală
       <div
@@ -158,7 +186,9 @@ export default function DiscordPresence() {
             <p className={`status ${data.data.discord_status}`}>
               {data.data.discord_status}
             </p>
+            
           </div>
+          
         </div>
 
         {/* Randăm doar activitățile relevante pentru DiscordPresence: Stremio și alte activități non-Spotify */}
@@ -244,7 +274,11 @@ export default function DiscordPresence() {
             );
           }
         })}
+        
       </div>
-    </div>
+
+
+          </GlassSurface>
+</div>
   );
 }
