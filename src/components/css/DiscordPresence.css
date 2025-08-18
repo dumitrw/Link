@@ -172,8 +172,9 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  height: 100%;
+  height: auto; /* Schimbat din height: 100% */
   padding: 0.2rem;
+  min-height: fit-content; /* Adăugat pentru a permite redimensionarea */
 }
 
 .activity-image {
@@ -183,6 +184,9 @@
   object-fit: cover;
   flex-shrink: 0;
   margin-right: 0.5rem;
+    display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .activity-info {
@@ -192,6 +196,31 @@
   display: flex;
   flex-direction: column;
   gap: 0rem;
+}
+
+.activity-container.no-image {
+  padding: 0.4rem 0.8rem; /* Padding mai mare pentru mai mult spațiu */
+  min-height: auto;
+
+}
+.activity-container:has([alt="VS Code"]) .activity-image {
+  background: transparent;
+  padding: 10px; /* Pentru a face logo-ul puțin mai mic decât containerul */
+}
+.activity-container.no-image strong {
+  font-size: 0.85rem; /* Ușor mai mic pentru proporții mai bune */
+  margin-bottom: 0.2rem;
+}
+.activity-container.no-image .activity-title {
+  margin-top: 0.1rem;
+}
+.activity-container.no-image .activity-info {
+  max-width: 100%;
+  padding: 0.3rem 0.2rem; /* Padding mai consistent */
+}
+.activity-section:has(.activity-container.no-image) {
+  min-height: 60px; /* Înălțime minimă mai mică pentru activități fără imagine */
+  padding: 0.4rem; /* Padding mai mic pentru a face cutia mai compactă */
 }
 
 .activity-info p,
@@ -223,7 +252,7 @@
   border-radius: 30px;
   width: 100%;
   box-sizing: border-box;
-  min-height: 100px;
+  min-height: auto;
   backdrop-filter: blur(4px);
   transition: all 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.13);
