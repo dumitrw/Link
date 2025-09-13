@@ -143,19 +143,25 @@ export default function DiscordPresence() {
     <div className="presence-wrapper">
       <div className="discord-card">
         <div className="user-section">
-          {/* NOU: Wrapper pentru avatar și bulina de status */}
-          <div className={`avatar-wrapper ${discord_status}`}> {/* Clasa de status se muta aici */}
-            <a href={`https://discord.com/users/${DISCORD_ID}`} target="_blank" rel="noopener noreferrer">
-              <img
-                src={`https://cdn.discordapp.com/avatars/${DISCORD_ID}/${discord_user.avatar}.png?size=128`}
-                alt="Discord avatar"
-                title="Viziteaza profil Discord"
-                className="avatar"
-              />
-            </a>
-            <div className="status-dot"></div> {/* Bulina de status va fi aici, stilizata prin CSS */}
-          </div>
-
+         <div className={`avatar-wrapper ${discord_status}`}>
+  <a href={`https://discord.com/users/${DISCORD_ID}`} target="_blank" rel="noopener noreferrer">
+    {/* Avatarul */}
+    <img
+      src={`https://cdn.discordapp.com/avatars/${DISCORD_ID}/${discord_user.avatar}.png?size=128`}
+      alt="Discord avatar"
+      title="Viziteaza profil Discord"
+      className="avatar"
+    />
+    {/* Overlay cu gluga Discord */}
+    <img
+      src="https://cdn.discordapp.com/avatar-decoration-presets/a_41445f736db3525135b6b9e1122f2254.png?size=160&passthrough=true"
+      alt="Discord Hood Decoration"
+      className="avatar-hood-decoration"
+      draggable={false}
+    />
+  </a>
+  <div className="status-dot"></div>
+</div>
           <div>
             <div className="name-and-badges-container">
               <h3>

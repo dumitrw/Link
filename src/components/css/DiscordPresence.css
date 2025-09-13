@@ -49,25 +49,42 @@
   position: relative; /* Esențial pentru poziționarea bulinei */
   width: 85px; /* La fel ca lățimea avatarului */
   height: 85px;
-  margin-bottom: 4px; /* La fel ca înălțimea avatarului */
+  margin-bottom: 1px; /* La fel ca înălțimea avatarului */
   margin-left: 10px; /* Păstrează marginea de la avatar */
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .avatar {
-  width: 100%; /* Ocupă 100% din wrapper */
-  height: 100%; /* Ocupă 100% din wrapper */
+  width: 84px;
+  height: 84px;
   border-radius: 50%;
-  border: 2.5px solid rgba(255, 255, 255, 0.589);
-  transition: transform 0.3s ease;
+  position: relative;
+  border: 2.5px solid rgba(0, 0, 0, 0.589);
+  transition:     rotate 0.3s ease,
+    box-shadow 0.3s ease;
   box-shadow: 0 4px 12px var(--status-color);
-
-  /* Eliminăm margin-bottom direct de pe avatar, acum e pe user-section */
 }
 
 .avatar:hover {
-  transform: scale(1.05);
-  border-color: rgb(255, 255, 255);
+  
+  rotate: 7deg;
+  box-shadow: 0 10px 16px var(--status-color);
 }
+
+.avatar-hood-decoration {
+  position: absolute;
+  top: -7px;           /* ajustează după caz: -7px sau -8px */
+  left: -7px;
+  width: 96px;         /* să acopere avatarul perfect */
+  height: 96px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+
 
 /* NOU: Stil pentru bulina de status */
 .status-dot {
@@ -187,8 +204,15 @@
     display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s ease;
 }
 
+.activity-section:hover .activity-image {
+  transform: scale(0.85)  rotate(-5deg);
+}
+.activity-section:hover .activity-info{
+transform: scale(1.08)  rotate(2deg);
+}
 .activity-info {
   flex: 1;
   min-width: 0;
@@ -196,6 +220,7 @@
   display: flex;
   flex-direction: column;
   gap: 0rem;
+  transition: transform 0.4s ease;
 }
 
 .activity-container.no-image {
@@ -265,7 +290,7 @@
 
 .activity-section:hover {
   background: rgba(83, 83, 83, 0.15);
-  transform: translateX(5px);
+  transform: rotate(3deg);
   border: 1px solid rgba(255, 255, 255, 0.904);
 }
 
