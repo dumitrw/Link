@@ -13,7 +13,7 @@
 }
 
 .spotify-link:hover {
-  transform: translateY(-5px);
+  transform: translateY(-1px) rotate(-0.5deg);
   backdrop-filter: blur(7px);
   background: rgba(2, 41, 2, 0.1);
     border-radius: 30px;

@@ -8,7 +8,7 @@
   margin: 0.1rem auto;
   margin-top: 0.5rem;
   box-sizing: border-box;
-      font-family: "TwCen";
+  font-family: "TwCen";
 }
 
 /* Card Discord principal */
@@ -30,7 +30,7 @@
 
 .discord-card:hover {
   backdrop-filter: blur(10px);
-  transform: translateY(-5px);
+  transform: translateY(0px) rotate(0.5deg);
   box-shadow: 0 10px 40px 0 var(--status-color);
   border: 1px solid rgb(255, 255, 255);
   z-index: 998;
@@ -161,10 +161,6 @@
     line-height: 1.2;
 }
 
-.status.online { color: #43b54c; }
-.status.idle { color: #faa81a; }
-.status.dnd { color: #e02c2c; }
-.status.offline { color: #747F8D; }
 
 /* Guild tag styles */
 .guild-tag {
@@ -211,7 +207,7 @@
   transform: scale(0.85)  rotate(-5deg);
 }
 .activity-section:hover .activity-info{
-transform: scale(1.08)  rotate(2deg);
+transform: scale(1.08)  rotate(-1deg);
 }
 .activity-info {
   flex: 1;

@@ -201,10 +201,10 @@ export default function DiscordPresence() {
               </div>
             </div>
             {/* Aici afișăm doar textul statusului și custom status-ul dedesubt (fără bulină) */}
-            <p className="status-text-only"> {/* Clasa noua pentru textul statusului */}
-              {displayStatusText} {/* Afișăm textul statusului curățat */}
-              {/* Afișare CUSTOM STATUS CAND E IDLE */}
-              {discord_status === 'idle' && customStatusText && (
+            <p className={`status-text-only ${discord_status}`}>{/* Clasa noua pentru textul statusului */}
+              {displayStatusText} 
+              {/* Afișare CUSTOM STATUS*/}
+              { customStatusText && (
                 <span className="custom-status-text">
                   {customStatusText}
                 </span>
