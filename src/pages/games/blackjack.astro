@@ -1,0 +1,28 @@
+---
+// src/pages/games/blackjack.astro
+import GameLayout from '../../layouts/GameLayout.astro';
+---
+
+<GameLayout 
+  title="BLACKJACK 21"
+  gameId="blackjack"
+  gameScript=""
+  canvasWidth={1200}
+  canvasHeight={800}
+>
+  <!-- ✅ IFRAME FULLSCREEN IMEDIAT -->
+  <iframe 
+    src="https://www.gamezop.com/_game-files/H13-Z8sQILx/index.html?sub=01KH73464RQSP69SYC7DXJN5FS&id=cfuucl7YgA&lang=en&user-journey-group=2025-preload-games"
+    style="
+      position: absolute; 
+      top: 0; left: 0; 
+      width: 100vw; 
+      height: calc(100vh - 80px); 
+      border: none; 
+      z-index: 5;
+    "
+    allowfullscreen
+    allow="fullscreen *; autoplay; encrypted-media; fullscreen"
+    loading="lazy"
+  ></iframe>
+</GameLayout>

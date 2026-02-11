@@ -1,0 +1,72 @@
+---
+// src/pages/games/index.astro
+import Aurora from '../../scripts/games/Aurora.jsx'; 
+
+const games = [
+ { 
+  id: 'blackjack', 
+  title: 'BLACKJACK 21', 
+  color: '#ffd700', 
+  thumb: 'https://static.gamezop.com/H13-Z8sQILx/wall.png' 
+}
+];
+---
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jocuri 🎮</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/src/components/css/games.css" />
+</head>
+
+<body style="margin: 0; position: relative; background: black ">
+
+
+  <!-- Conținut Z-INDEX mai mare -->
+  <header style="position: relative; z-index: 100;">
+    <button onclick="history.back()" class="btn-back btn-ui">←</button>
+    <h1>🎮 JOCURI SECRETE</h1>
+  </header>
+<div class="veil-container">
+  <Aurora
+    client:only="react"
+    colorStops={["#00d2ff", "#3a7bd5", "#00d2ff"]} // Culori vii (Albastru/Turcoaz)
+    blend={0.5}     /* Intensitatea amestecului */
+    amplitude={1.0} /* Înălțimea valurilor */
+    speed={0.5}     /* Viteza de mișcare */
+  />
+</div>
+  <main style="position: relative; z-index: 100;">
+    {games.map(game => (
+      <a href={`/games/${game.id}`} class="game-link" style={`--card-color: ${game.color};`}>
+        <div class="game-card">
+          <img src={game.thumb} alt={game.title} class="thumbnail" loading="lazy" />
+          <button class="play-btn">JOACĂ</button>
+        </div>
+      </a>
+    ))}
+  </main>
+</body>
+
+<style>
+.veil-container {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: #050505; /* Fundal foarte închis pentru contrast */
+  overflow: hidden;
+}
+
+/* Forțăm canvas-ul din Aurora să fie vizibil */
+.veil-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  filter: contrast(110%) brightness(90%); /* Opțional, pentru "pop" */
+}
+
+</style>
+
+</html>
