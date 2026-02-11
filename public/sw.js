@@ -1,5 +1,5 @@
 // Versiunea cache-ului - modifică la fiecare deploy pentru a forța update
-const CACHE_NAME = 'cache-v13.09.2025 deco+misc+';
+const CACHE_NAME = 'cache-v11.02.2026';
 
 // URLs care vor fi cache-uite la instalare
 const URLS_TO_CACHE = [
