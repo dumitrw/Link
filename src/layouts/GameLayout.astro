@@ -91,18 +91,39 @@ const {
       border-radius: 20px;
     }
 
-    /* IFRAME FULLSCREEN */
+
+
+/* === DISCLAIMER BANNER HIDE (FINAL) === */
+.canvas-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 90px;
+  background: linear-gradient(
+    to bottom, 
+    rgba(15,15,25,1) 0%, 
+    rgba(15,15,25,0.95) 50%, 
+    transparent 100%
+  );
+  z-index: 15;
+  pointer-events: none;
+}
+
 .canvas-container iframe {
-  width: 100%; height: 100%;
-  transform: translateY(-8%);
-  object-fit: cover;
+  position: absolute;
+  top: -15px;
+  left: 0; right: 0; bottom: 0;
+  height: calc(100% + 15px);
+  width: 100%;
+  transform: scale(1.02);
 }
-.canvas-container::after {
-  content: ''; position: absolute;
-  top: 0; left: 0; right: 0; height: 90px;
-  background: rgba(15,15,25,0.99);
-  z-index: 2; pointer-events: none;
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .canvas-container::before { height: 110px; }
+  .canvas-container iframe { top: -25px; }
 }
+
+
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
