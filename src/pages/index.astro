@@ -8,7 +8,6 @@ import DitherBackground from "@/components/background/DitherBackground.jsx";
 import DitherToggleButton from "@/components/background/DitherToggleButton.jsx";
 import SplashToggleButton from '../components/scripts/SplashToggleButton.jsx';
 import SplashCursorWrapper from "@/components/scripts/SplashCursorWrapper.jsx";
-import GamesButton from "@/components/scripts/GamesButton.jsx";
 // import Featured from "@/components/sections/Featured.astro";
 
 ---
@@ -24,7 +23,6 @@ import GamesButton from "@/components/scripts/GamesButton.jsx";
     <Socials />
     <!-- <Featured /> -->
     <Footer />
-    <GamesButton client:only="react" />
     <Presence client:only="react"/>
     
     <DitherToggleButton client:only="react"/>
